@@ -68,3 +68,19 @@ echo "Done!"
 
 info "Install composer"
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+info "Install Node and NPM"
+apt-get install -y g++
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+apt-get install -y nodejs
+su vagrant
+mkdir /home/vagrant/node_modules
+ln -s /home/vagrant/node_modules/ /app/client/node_modules
+
+info "Angular cli"
+npm install -g angular-cli
+
+#apt-get install nodejs
+#apt-get install nodejs-legacy
+#apt-get install npm
+#npm install npm -g

@@ -1,3 +1,16 @@
 <h1>
-  Some text, {{title}}
+  {{title}}
 </h1>
+
+<ul id="todo" *ngIf="todos.length">
+  <li *ngFor="let todo of todos" [ngClass]="completed">
+    <span>{{todo}}</span>
+    <span class="btn btn-danger">delete</span>
+  </li>
+</ul>
+
+<app-radio>
+  Loading...
+</app-radio>
+
+
