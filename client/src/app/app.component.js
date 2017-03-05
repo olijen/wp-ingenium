@@ -6,9 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require('@angular/core');
+var todos = [
+    'some TODO',
+    'some TODO',
+    'some TODO',
+    'some TODO',
+];
+var actions = [];
 var AppComponent = (function () {
     function AppComponent() {
-        this.title = 'app works!';
+        this.title = 'TODO list';
+        this.todos = todos;
+        this.actions = actions;
     }
     AppComponent = __decorate([
         core_1.Component({

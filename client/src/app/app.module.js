@@ -9,16 +9,20 @@ var platform_browser_1 = require('@angular/platform-browser');
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
+var ng_bootstrap_1 = require('@ng-bootstrap/ng-bootstrap');
 var app_component_1 = require('./app.component');
+var radio_component_1 = require('./radio/radio.component');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent,
+                radio_component_1.RadioComponent
             ],
             imports: [
+                ng_bootstrap_1.NgbModule.forRoot(),
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule
