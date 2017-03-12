@@ -2,15 +2,31 @@
 
 namespace frontend\controllers;
 
-use yii\rest\ActiveController;
-use yii\web\Controller;
+use frontend\components\RestController;
 
-class UserController extends Controller
+class UserController extends RestController
 {
-    public $modelClass = 'common\models\User';
-
-    function actionIndex()
+    public function actions()
     {
-        exit('qweqwe');
+        return [
+            'index' => [
+                'class' => 'frontend\controllers\user\Index',
+            ],
+            'view' => [
+                'class' => 'frontend\controllers\user\View',
+            ],
+            'create' => [
+                'class' => 'frontend\controllers\user\Create',
+            ],
+            'update' => [
+                'class' => 'frontend\controllers\user\Update',
+            ],
+            'delete' => [
+                'class' => 'frontend\controllers\user\Delete',
+            ],
+            'options' => [
+                'class' => 'frontend\controllers\user\Options',
+            ],
+        ];
     }
 }
