@@ -10,7 +10,7 @@ timezone: Europe/London
 box_check_update: false
 
 # Virtual machine name
-machine_name: locaut
+machine_name: wp-ingenium
 
 # IP
 ip: 192.168.0.223
