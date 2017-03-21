@@ -78,7 +78,7 @@ mkdir /home/vagrant/node_modules
 ln -s /home/vagrant/node_modules/ /app/client/node_modules
 
 info "Angular cli"
-npm install -g angular-cli
+npm install -g @angular/cli
 
 #apt-get install nodejs
 #apt-get install nodejs-legacy

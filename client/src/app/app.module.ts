@@ -5,13 +5,15 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { RadioComponent } from './radio/radio.component';
+import { UserComponent } from './user/user.component';
+import { IssueComponent } from './issue/issue.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RadioComponent
+    UserComponent,
+    IssueComponent
   ],
   imports: [
     NgbModule.forRoot(),
