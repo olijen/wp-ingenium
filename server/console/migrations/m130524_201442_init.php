@@ -6,9 +6,9 @@ class m130524_201442_init extends Migration
 {
     public function safeUp()
     {
-        $this->execute('drop database wpingenium');
-        $this->execute('create database wpingenium');
-        $this->execute('use wpingenium');
+        $this->execute('drop database wpi');
+        $this->execute('create database wpi');
+        $this->execute('use wpi');
 
 
         $this->createUser();

@@ -2,8 +2,8 @@ require 'yaml'
 require 'fileutils'
 
 domains = {
-  frontend: 'wp-ingenium.loc',
-  backend:  'admin.wp-ingenium.loc'
+  frontend: 'wpi.loc',
+  backend:  'admin.wpi.loc'
 }
 
 options = YAML.load_file './vagrant/config/vagrant-local.yml'
@@ -30,9 +30,9 @@ Vagrant.configure(2) do |config|
 
   # NETWORK SETTINGS ---------------------------------------------------------------------
 
-  # config.vm.network 'public_network', ip: options['ip']           # 192.168.0.x
+  config.vm.network 'public_network', ip: options['ip']           # 192.168.0.x
   # config.vm.network 'private_network', ip: options['static_ip']   # My static IP
-  config.vm.network 'private_network', type: "dhcp"                 # Autodetect (I don't test)
+  # config.vm.network 'private_network', type: "dhcp"                 # Autodetect (I don't test)
 
   config.vm.synced_folder './', '/app', owner: 'vagrant', group: 'vagrant'
   config.vm.synced_folder '.', '/vagrant', disabled: true

@@ -3,7 +3,7 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=wpingenium',
+            'dsn' => 'mysql:host=localhost;dbname=wpi',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',

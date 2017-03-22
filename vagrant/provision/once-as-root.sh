@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #== Import script args ==
 
@@ -6,7 +6,7 @@ timezone=$(echo "$1")
 
 #== Bash helpers ==
 
-function info {
+info() {
   echo " "
   echo "--> $1"
   echo " "
@@ -62,8 +62,8 @@ ln -s /app/vagrant/nginx/app.conf /etc/nginx/sites-enabled/app.conf             
 echo "Done!"
 
 info "Initailize databases for MySQL"
-mysql -uroot <<< "CREATE DATABASE wpingenium"
-mysql -uroot <<< "CREATE DATABASE wpingenium_test"
+mysql -uroot <<< "CREATE DATABASE wpi"
+mysql -uroot <<< "CREATE DATABASE wpi_test"
 echo "Done!"
 
 info "Install composer"

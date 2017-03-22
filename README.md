@@ -1,10 +1,10 @@
 Заходим в фолдер с проектами. Клонируем репозиторий.
-git clone https://your_name@bitbucket.org/olijen/wp-ingenium.git
+git clone https://your_name@bitbucket.org/olijen/wpi.git
 
 Устанавливаем Vagrant
 
 Заходим в фолдер проекта
-cd wp-ingenium
+cd wpi
 
 Стартуем виртуальную машину
 vagrant up
@@ -15,9 +15,9 @@ VAGRANT_LOG=info vagrant up --debug  | tee vagrant/vagrant.log
 vagrant ssh
 
 После коннекта машина сообщит её IP. 
-Заходим в /etc/hosts и подставляем этот IP вместо 127.0.0.1 в разделе wp-ingenium
+Заходим в /etc/hosts и подставляем этот IP вместо 127.0.0.1 в разделе wpi
 
-Заходим по адресу wp-ingenium.loc
+Заходим по адресу wpi.loc
 
 ...
 
