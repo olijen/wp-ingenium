@@ -4,11 +4,14 @@ namespace frontend\controllers\master;
 
 use frontend\components\RestAction;
 use frontend\services\MasterService;
+use Yii;
 
-class Index extends RestAction
+
+class Create extends RestAction
 {
-    function run()
+    
+    public function run()
     {
-        return MasterService::getAllMasters();
+        return MasterService::create();
     }
 }
