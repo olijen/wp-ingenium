@@ -17,4 +17,4 @@ change Vagrantfile
     domains
     networks
     config.vm.synced_folder '../'
-    nginx/app.conf
+    nginx/app.conf\
