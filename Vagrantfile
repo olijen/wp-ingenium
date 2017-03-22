@@ -2,8 +2,8 @@ require 'yaml'
 require 'fileutils'
 
 domains = {
-  frontend: 'locaut.loc',
-  backend:  'admin.locaut.loc'
+  frontend: 'wp-ingenium.loc',
+  backend:  'admin.wp-ingenium.loc'
 }
 
 options = YAML.load_file './vagrant/config/vagrant-local.yml'

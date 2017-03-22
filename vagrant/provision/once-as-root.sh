@@ -58,12 +58,12 @@ sed -i 's/user www-data/user vagrant/g' /etc/nginx/nginx.conf
 echo "Done!"
 
 info "Enabling site configuration"
-ln -s /app/vagrant/nginx/app.conf /etc/nginx/sites-enabled/app.conf
+ln -s /app/vagrant/nginx/app.conf /etc/nginx/sites-enabled/app.conf               u
 echo "Done!"
 
 info "Initailize databases for MySQL"
-mysql -uroot <<< "CREATE DATABASE locaut"
-mysql -uroot <<< "CREATE DATABASE locaut_test"
+mysql -uroot <<< "CREATE DATABASE wpingenium"
+mysql -uroot <<< "CREATE DATABASE wpingenium_test"
 echo "Done!"
 
 info "Install composer"
