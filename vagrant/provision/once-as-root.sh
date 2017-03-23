@@ -54,7 +54,7 @@ sed -i 's/owner = www-data/owner = vagrant/g' /etc/php5/fpm/pool.d/www.conf
 echo "Done!"
 
 info "Enabling php configuration"
-ln -s /app/vagrant/php5/xdebug.ini /etc/php5/cli/conf.d/20-xdebug.ini
+ln -f -s /app/vagrant/php5/xdebug.ini /etc/php5/cli/conf.d/20-xdebug.ini
 echo "Done!"
 
 info "Configure NGINX"
