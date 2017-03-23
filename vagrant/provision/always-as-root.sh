@@ -16,3 +16,6 @@ info "Restart web-stack"
 service php5-fpm restart
 service nginx restart
 service mysql restart
+
+cd /app/client
+npm run start

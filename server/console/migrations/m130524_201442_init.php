@@ -1,6 +1,7 @@
 <?php
 
 use yii\db\Migration;
+use yii\db\mysql\Schema;
 
 class m130524_201442_init extends Migration
 {
@@ -24,6 +25,7 @@ class m130524_201442_init extends Migration
 
         $this->createIssueFile();
         $this->createIssueMessageFile();
+        $this->createToken();
     }
 
     private function createUser()
@@ -223,6 +225,21 @@ class m130524_201442_init extends Migration
         $this->linkTables('issue_message_file', 'issue_message');
     }
 
+    private function createToken()
+    {
+        $this->createTable('token', [
+            'account_id' => $this->integer()->notNull(),
+            'code'       => $this->string(32)->notNull(),
+            'created_at' => $this->integer()->notNull(),
+            'type'       => $this->smallInteger()->notNull()
+        ]);
+
+        $this->linkTables('issue_message_file', 'issue_message');
+
+        $this->createIndex('token_unique', 'token', ['account_id', 'code', 'type'], true);
+        $this->addForeignKey('fk_account_token', 'token', 'account_id', 'account', 'id', 'CASCADE', 'RESTRICT');
+    }
+
     public function safeDown()
     {
         $this->dropTable('account');
@@ -236,6 +253,7 @@ class m130524_201442_init extends Migration
         $this->dropTable('project_proposal_message');
         $this->dropTable('issue_file');
         $this->dropTable('issue_message_file');
+        $this->dropTable('token');
 
         //todo: $this->dropForeignKey('fk-post-category_id', 'post');
         //todo: $this->dropIndex('idx-post-category_id', 'post');

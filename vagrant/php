@@ -1,0 +1,1 @@
+php -r "var_dump(phpinfo());" | grep xdebug

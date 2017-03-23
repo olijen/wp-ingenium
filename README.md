@@ -8,8 +8,6 @@ cd wpi
 
 Стартуем виртуальную машину
 vagrant up
-*Для записи вывода в файл
-VAGRANT_LOG=info vagrant up --debug  | tee vagrant/vagrant.log
 
 Коннектимся к ней
 vagrant ssh
@@ -22,26 +20,3 @@ vagrant ssh
 ...
 
 PROFIT!!!
-
-# ANGULAR CLI
-
-# Создать новый компонент
-ng generate component my-new-component
-
-# Создать новую директиву
-ng generate directive my-new-directive
-
-# Создать новый pipe
-ng generate pipe my-new-pipe
-
-# Создать новый сервис
-ng generate service my-new-service
-
-# Создать новый класс
-ng generate class my-new-class
-
-# Создать новый интерфейс
-ng generate interface my-new-interface
-
-# Создать новый enum
-ng generate enum my-new-enum

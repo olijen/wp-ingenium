@@ -10,6 +10,7 @@ namespace frontend\components;
 
 
 use yii\rest\Controller;
+use yii\web\ForbiddenHttpException;
 
 class RestController extends Controller
 {

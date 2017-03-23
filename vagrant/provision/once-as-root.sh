@@ -41,7 +41,7 @@ apt-get update
 apt-get upgrade -y
 
 info "Install additional software"
-apt-get install -y git php5-curl php5-cli php5-intl php5-mysqlnd php5-gd php5-fpm nginx mysql-server-5.6
+apt-get install -y git php5-curl php5-cli php5-intl php5-mysqlnd php5-gd php5-fpm nginx mysql-server-5.6 php5-xdebug
 
 info "Configure MySQL"
 sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
@@ -53,12 +53,16 @@ sed -i 's/group = www-data/group = vagrant/g' /etc/php5/fpm/pool.d/www.conf
 sed -i 's/owner = www-data/owner = vagrant/g' /etc/php5/fpm/pool.d/www.conf
 echo "Done!"
 
+info "Enabling php configuration"
+ln -s /app/vagrant/php5/xdebug.ini /etc/php5/cli/conf.d/20-xdebug.ini
+echo "Done!"
+
 info "Configure NGINX"
 sed -i 's/user www-data/user vagrant/g' /etc/nginx/nginx.conf
 echo "Done!"
 
 info "Enabling site configuration"
-ln -s /app/vagrant/nginx/app.conf /etc/nginx/sites-enabled/app.conf               u
+ln -s /app/vagrant/nginx/app.conf /etc/nginx/sites-enabled/app.conf
 echo "Done!"
 
 info "Initailize databases for MySQL"
@@ -79,6 +83,9 @@ ln -s /home/vagrant/node_modules/ /app/client/node_modules
 
 info "Angular cli"
 npm install -g @angular/cli
+
+cd /app/client
+npm install
 
 #apt-get install nodejs
 #apt-get install nodejs-legacy

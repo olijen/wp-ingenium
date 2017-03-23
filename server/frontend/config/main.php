@@ -12,6 +12,22 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'authClientCollection' => [
+            //todo: защитить от взлома
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\GoogleOAuth',
+                    'clientId' => '1080419497812-s3i401r1c7tit5nm2ifh8henbibmtd54.apps.googleusercontent.com',
+                    'clientSecret' => 'qRGvspMMuASo1txemEqiLFc1',
+                ],
+                'twitter' => [
+                    'class' => 'yii\authclient\clients\Twitter',
+                    'consumerKey' => 'twitter_consumer_key',
+                    'consumerSecret' => 'twitter_consumer_secret',
+                ],
+            ],
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
             'parsers' => [
@@ -19,8 +35,9 @@ return [
             ],
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'common\models\AccountRecord',
             'enableAutoLogin' => true,
+            'enableSession' => false,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
@@ -33,6 +50,11 @@ return [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                ], [
+                    'class' => 'yii\log\FileTarget',
+                    'logFile' => '@app/runtime/logs/eauth.log',
+                    'categories' => ['nodge\eauth\*'],
+                    'logVars' => [],
                 ],
             ],
         ],
@@ -46,6 +68,7 @@ return [
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'master'],
+                'login/<service:google|facebook|etc>' => 'site/login'
             ],
         ],
     ],
