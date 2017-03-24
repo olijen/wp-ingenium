@@ -17,7 +17,7 @@ $config = [
             'class' => 'yii\authclient\Collection',
             'clients' => [
                 'google' => [
-                    'class' => 'yii\authclient\clients\GoogleOAuth',
+                    'class' => 'yii\authclient\clients\Google',
                     'clientId' => '1080419497812-s3i401r1c7tit5nm2ifh8henbibmtd54.apps.googleusercontent.com',
                     'clientSecret' => 'qRGvspMMuASo1txemEqiLFc1',
                 ],
@@ -35,7 +35,7 @@ $config = [
             ],
         ],
         'user' => [
-            'identityClass' => 'common\models\AccountRecord',
+            'identityClass' => 'common\models\UserRecord',
             'enableAutoLogin' => true,
             'enableSession' => false,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],

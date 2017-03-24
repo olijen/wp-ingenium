@@ -30,11 +30,13 @@ echo 'export PATH=/home/vagrant/.config/composer/vendor/bin:$PATH' | tee -a /hom
 info "Install project dependencies"
 cd /app/server
 composer --no-progress --prefer-dist install
+#sudo chown -R $USER $HOME/.composer
 
 info "Init project"
 ./init --env=Development --overwrite=y
 
 info "Apply migrations"
+./yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations <<< "yes"
 ./yii migrate <<< "yes"
 
 info "Create bash-alias 'app' for vagrant user"

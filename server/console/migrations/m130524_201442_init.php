@@ -7,12 +7,10 @@ class m130524_201442_init extends Migration
 {
     public function safeUp()
     {
-        $this->execute('drop database wpi');
-        $this->execute('create database wpi');
-        $this->execute('use wpi');
+        //$this->execute('drop database wpi');
+        //$this->execute('create database wpi');
+        //$this->execute('use wpi');
 
-
-        $this->createUser();
         $this->createCustomer();
         $this->createMaster();
         $this->createProject();
@@ -25,49 +23,25 @@ class m130524_201442_init extends Migration
 
         $this->createIssueFile();
         $this->createIssueMessageFile();
-        $this->createToken();
-    }
-
-    private function createUser()
-    {
-        $this->createTable('account', [
-            'id' => $this->primaryKey(),
-
-            'email' => $this->string()->notNull()->unique(),
-            'name' => $this->string(55),
-            'lastName' => $this->string(55),
-            'phone' => $this->string(15)->unique(),
-
-            'auth_key' => $this->string(32)->notNull(),
-            'password_hash' => $this->string()->notNull(),
-            'password_reset_token' => $this->string()->unique(),
-
-            'status' => $this->smallInteger()->notNull()->defaultValue(10),
-            'created_date' => $this->integer()->notNull(),
-            'updated_date' => $this->integer()->notNull(),
-
-        ]);
-
-        //todo: add index - status
     }
 
     private function createCustomer()
     {
         $this->createTable('customer', [
             'id' => $this->primaryKey(),
-            'account_id' => $this->integer()->notNull(),
+            'user_id' => $this->integer()->notNull(),
         ]);
 
-        $this->linkTables('customer', 'account');
+        $this->linkTables('customer', 'user');
     }
 
     private function createMaster()
     {
         $this->createTable('master', [
             'id' => $this->primaryKey(),
-            'account_id' => $this->integer()->notNull(),
+            'user_id' => $this->integer()->notNull(),
         ]);
-        $this->linkTables('master', 'account');
+        $this->linkTables('master', 'user');
     }
 
     private function createProject()
@@ -154,14 +128,14 @@ class m130524_201442_init extends Migration
     {
         $this->createTable('issue_message', [
             'id' => $this->primaryKey(),
-            'account_id' => $this->integer()->notNull(),
+            'user_id' => $this->integer()->notNull(),
             'issue_id' => $this->integer()->notNull(),
 
             'text' => $this->text()->notNull(),
             'created_date' => $this->integer()->notNull(),
             'updated_date' => $this->integer()->notNull(),
         ]);
-        $this->linkTables('issue_message', 'account');
+        $this->linkTables('issue_message', 'user');
         $this->linkTables('issue_message', 'issue');
     }
 
@@ -169,7 +143,7 @@ class m130524_201442_init extends Migration
     {
         $this->createTable('project_message', [
             'id' => $this->primaryKey(),
-            'account_id' => $this->integer()->notNull(),
+            'user_id' => $this->integer()->notNull(),
             'project_id' => $this->integer()->notNull(),
 
             'text' => $this->text()->notNull(),
@@ -177,7 +151,7 @@ class m130524_201442_init extends Migration
             'updated_date' => $this->integer()->notNull(),
         ]);
 
-        $this->linkTables('project_message', 'account');
+        $this->linkTables('project_message', 'user');
         $this->linkTables('project_message', 'project');
     }
 
@@ -225,24 +199,8 @@ class m130524_201442_init extends Migration
         $this->linkTables('issue_message_file', 'issue_message');
     }
 
-    private function createToken()
-    {
-        $this->createTable('token', [
-            'account_id' => $this->integer()->notNull(),
-            'code'       => $this->string(32)->notNull(),
-            'created_at' => $this->integer()->notNull(),
-            'type'       => $this->smallInteger()->notNull()
-        ]);
-
-        $this->linkTables('issue_message_file', 'issue_message');
-
-        $this->createIndex('token_unique', 'token', ['account_id', 'code', 'type'], true);
-        $this->addForeignKey('fk_account_token', 'token', 'account_id', 'account', 'id', 'CASCADE', 'RESTRICT');
-    }
-
     public function safeDown()
     {
-        $this->dropTable('account');
         $this->dropTable('customer');
         $this->dropTable('master');
         $this->dropTable('project');
@@ -253,7 +211,6 @@ class m130524_201442_init extends Migration
         $this->dropTable('project_proposal_message');
         $this->dropTable('issue_file');
         $this->dropTable('issue_message_file');
-        $this->dropTable('token');
 
         //todo: $this->dropForeignKey('fk-post-category_id', 'post');
         //todo: $this->dropIndex('idx-post-category_id', 'post');
