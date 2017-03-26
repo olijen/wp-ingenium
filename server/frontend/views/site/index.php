@@ -3,7 +3,7 @@
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
-var_dump(Yii::$app->user->isGuest);
+var_dump(Yii::$app->user    );
 ?>
 
 <div class="site-index">

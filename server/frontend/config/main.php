@@ -34,12 +34,12 @@ $config = [
                 'application/json' => 'yii\web\JsonParser',
             ],
         ],
-        'user' => [
+        /*'user' => [
             'identityClass' => 'common\models\UserRecord',
             'enableAutoLogin' => true,
             'enableSession' => false,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
-        ],
+        ],*/
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
