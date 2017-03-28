@@ -14,8 +14,8 @@ if options['github_token'].nil? || options['github_token'].to_s.length != 40
 end
 
 # CONFIGURE ------------------------------------------------------------------------------
-
-Vagrant.configure(2) do |config|
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = 'ubuntu/trusty64'                 # select the box
 
@@ -48,6 +48,8 @@ Vagrant.configure(2) do |config|
   # provisioners
   config.vm.provision 'shell', path: './vagrant/provision/once-as-root.sh', args: [options['timezone']]
   config.vm.provision 'shell', path: './vagrant/provision/once-as-vagrant.sh', args: [options['github_token']], privileged: false
+  config.vm.provision 'shell', path: './vagrant/provision/site.sh', args: []
+
   config.vm.provision 'shell', path: './vagrant/provision/always-as-root.sh', run: 'always'
 
   # post-install message (vagrant console)

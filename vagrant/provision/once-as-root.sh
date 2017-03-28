@@ -68,6 +68,7 @@ echo "Done!"
 info "Initailize databases for MySQL"
 mysql -uroot <<< "CREATE DATABASE wpi"
 mysql -uroot <<< "CREATE DATABASE wpi_test"
+mysql -uroot <<< "CREATE DATABASE wpi_site; CREATE USER wordpressuser@localhost IDENTIFIED BY 'XCVvbnm'; GRANT ALL PRIVILEGES ON wpi_site.* TO wordpressuser@localhost; FLUSH PRIVILEGES;"
 echo "Done!"
 
 info "Install composer"
