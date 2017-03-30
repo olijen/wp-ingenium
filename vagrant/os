@@ -1,6 +1,0 @@
-# Log to file after vagrant up
-VAGRANT_LOG=info vagrant up --debug  | tee vagrant/vagrant.log
-
-#get all files from ftp
-wget -r ftp://1.2.3.4/dir/* --ftp-user=username --ftp-password=password
-
