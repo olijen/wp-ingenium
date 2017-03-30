@@ -1,0 +1,11 @@
+php -r "var_dump(phpinfo());" | grep xdebug
+
+#composer problems
+rm -rf vendor composer.lock
+composer self-update
+composer clear-cache
+composer --prefer-dist  install
+
+
+
+

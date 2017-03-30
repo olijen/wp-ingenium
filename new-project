@@ -1,0 +1,20 @@
+# server
+composer global require "fxp/composer-asset-plugin:^1.2.0"
+cd /var/www/project
+composer create-project yiisoft/yii2-app-advanced server 2.0.10
+cd server
+composer update
+
+# client
+sudo npm install -g angular-cli
+ng new client
+cd client
+ng serve
+
+# VM
+create local.yml
+change Vagrantfile
+    domains
+    networks
+    config.vm.synced_folder '../'
+    nginx/app.conf\
