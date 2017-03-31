@@ -2,5 +2,11 @@
 VAGRANT_LOG=info vagrant up --debug  | tee vagrant/vagrant.log
 
 #get all files from ftp
-wget -r ftp://1.2.3.4/dir/* --ftp-user=username --ftp-password=password
+wget -r -l 100 ftp://1.2.3.4/dir/* --ftp-user=username --ftp-password=password
 
+# version error
+mysqldump --lock-all-tables -u root -p --all-databases > dump.sql
+mysql -u root -p < dump.sql
+
+# https://www.shellhacks.com/ru/copy-files-ssh-10-examples/
+scp user@remote.host:file.txt /some/local/directory
