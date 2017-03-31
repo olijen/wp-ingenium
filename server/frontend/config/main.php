@@ -68,6 +68,17 @@ $config = [
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'master'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'issue'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'customer'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'issue-file'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'issue-message'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'issue-message-file'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'profile'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'project'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'project-message'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'project-proposal-message'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'task'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'token'],
                 'login/<service:google|facebook|etc>' => 'site/login'
             ],
         ],
