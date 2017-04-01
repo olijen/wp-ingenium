@@ -19,12 +19,18 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 
 @NgModule({
+    //набор классов представлений, которые должны использоваться в шаблонах компонентов из других модулей
+    exports: [
+        
+    ],
+    //другие модули, классы которых необходимы для шаблонов компонентов из текущего модуля
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
         routing
     ],
+    //классы представлений (view classes), которые принадлежат модулю (comp, dir, pipes)
     declarations: [
         AppComponent,
         AlertComponent,
@@ -32,6 +38,7 @@ import { RegisterComponent } from './register/index';
         LoginComponent,
         RegisterComponent
     ],
+    //классы, создающие сервисы, используемые модулем
     providers: [
         AuthGuard,
         AlertService,
@@ -43,6 +50,7 @@ import { RegisterComponent } from './register/index';
         MockBackend,
         BaseRequestOptions
     ],
+    //корневой компонент, который вызывается по умолчанию при загрузке приложения
     bootstrap: [AppComponent]
 })
 

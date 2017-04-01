@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use dektrium\user\models\User;
 use Yii;
 
 /**
@@ -29,7 +30,7 @@ use Yii;
  * @property SocialAccount[] $socialAccounts
  * @property Token[] $tokens
  */
-class UserRecord extends \yii\db\ActiveRecord
+class UserRecord extends User
 {
     /**
      * @inheritdoc
