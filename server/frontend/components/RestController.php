@@ -1,19 +1,27 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: oleggrigoryev
- * Date: 11.03.17
- * Time: 13:14
- */
 
 namespace frontend\components;
 
 
+use yii\filters\Cors;
 use yii\rest\Controller;
 use yii\web\ForbiddenHttpException;
 
 class RestController extends Controller
 {
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+
+        //Для того, чтоб работали междоменные запросы
+        $behaviors['corsFilter'] = [
+            'class' => Cors::className()
+        ];
+
+        return $behaviors;
+    }
+
     /**
      * @inheritdoc
      */

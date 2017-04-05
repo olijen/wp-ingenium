@@ -1,0 +1,13 @@
+<div>
+    <h3>Ваши проекты:</h3>
+    <a class="btn btn-outline-primary" (click)="createProject()">Новый проект</a>
+    <ul>
+        <li *ngFor="let project of projects">
+            <div>
+                <a class="btn btn-block btn-outline-primary" [routerLink]="['projects', project.id]">{{project.name}}</a>
+                <span *ngIf="project.url">( {{project.url}} )</span>
+            </div>
+            <!-- 3 last issue -->
+        </li>
+    </ul>
+</div>

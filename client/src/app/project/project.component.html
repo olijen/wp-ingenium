@@ -1,0 +1,19 @@
+<div *ngIf="project" class="col-md-6 col-md-offset-3">
+    <h3>Проект: {{project.name}}</h3>
+    <a class="btn btn-outline-danger" (click)="createIssue()">Добавить задачу</a>
+    <a class="btn btn-outline-danger" (click)="deleteProject()">Удалить проект</a>
+    <a class="btn btn-outline-danger" (click)="editProject()">Изменить проект</a>
+
+    <div class="project_block">
+        <ul>
+            <li>
+                <label>URL</label>
+                <p>{{project.url}}</p>
+            </li>
+            <li>
+                <label>Описание</label>
+                <p>{{project.description}}</p>
+            </li>
+        </ul>
+    </div>
+</div>

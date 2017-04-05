@@ -4,7 +4,7 @@
 
 $this->title = 'My Yii Application';
 if (!Yii::$app->user->isGuest)
-    var_dump(Yii::$app->user->getIdentity()->username);
+var_dump(Yii::$app->user->getIdentity()->username);
 ?>
 
 <div class="site-index">

@@ -10,3 +10,13 @@ mysql -u root -p < dump.sql
 
 # https://www.shellhacks.com/ru/copy-files-ssh-10-examples/
 scp user@remote.host:file.txt /some/local/directory
+
+# used OS resources
+df -h
+free -m
+top -b |head -n5
+htop
+ps -eo pmem,pcpu,rss,vsize,args | sort -k 1 -r | less
+
+# mysql optimization
+mysqlcheck -Ao
