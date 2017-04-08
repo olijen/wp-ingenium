@@ -12,6 +12,7 @@ class Create extends RestAction
     {
 		$issue = new IssueRecord;
 		$issue->setAttributes(Yii::$app->getRequest()->getBodyParams());
+		$issue->created_date = $issue->updated_date = time();
 		
 		if (!$issue->save() && $issue->hasErrors()) {
 			return $issue;

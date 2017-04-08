@@ -12,6 +12,7 @@ class Create extends RestAction
 	{
 		$project = new ProjectRecord;
 		$project->setAttributes(Yii::$app->getRequest()->getBodyParams());
+		$project->created_date = $project->updated_date = time();
 		
 		if (!$project->save() && $project->hasErrors()) {
 			return $project;

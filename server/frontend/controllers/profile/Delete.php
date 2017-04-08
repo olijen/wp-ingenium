@@ -17,6 +17,11 @@ class Delete extends RestAction
 			return;
 		}
 		
+		if ($profile->user_id !== Yii::$app->user->identity->id) {
+			Yii::$app->getResponse()->setStatusCode(403);
+			return;
+		}
+
 		if (false === $profile->delete()) {
 			throw new Exception('Detetion of Profile was unsuccessfull');
 			return false;

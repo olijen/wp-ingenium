@@ -16,6 +16,11 @@ class View extends RestAction
 			Yii::$app->getResponse()->setStatusCode(404);
 			return;
 		}
+
+		if ($profile->user_id !== Yii::$app->user->identity->id) {
+			Yii::$app->getResponse()->setStatusCode(403);
+			return;
+		}
 		
 		return $profile;
 	}

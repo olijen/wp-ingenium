@@ -4,6 +4,8 @@ namespace frontend\controllers\issue;
 
 use frontend\components\RestAction;
 use common\models\IssueRecord;
+use common\models\ProjectRecord;
+use common\models\CustomerRecord;
 use Yii;
 
 class View extends RestAction
@@ -17,6 +19,14 @@ class View extends RestAction
 			return;
 		}
 		
+		$project = ProjectRecord::findOne(['id' => $issue->project_id]);
+		$customer = CustomerRecord::findOne(['user_id' => Yii::$app->user->identity->id]);
+
+		if ($project->customer_id !== $customer->id) {
+			Yii::$app->getResponse()->setStatusCode(403);
+			return;
+		}
+
 		return $issue;
 	}
 }

@@ -7,8 +7,10 @@ use common\models\IssueMessageFileRecord;
 
 class Index extends RestAction
 {
-	public function run()
+	public function run($issue_message_id)
 	{
-		return IssueMessageFileRecord::find()->all();
+		return IssueMessageFileRecord::find()->where([
+			'issue_message_id' => $issue_message_id
+		])->all();
 	}
 }

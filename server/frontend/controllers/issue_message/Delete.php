@@ -16,6 +16,11 @@ class Delete extends RestAction
 			Yii::$app->getResponse->setStatusCode(404);
 			return;
 		}
+
+		if ($issueMessage->user_id !== Yii::$app->user->identity->id) {
+			Yii::$app->getResponse()->setStatusCode(403);
+			return;
+		}
 		
 		if (false === $issueMessage->delete()) {
 			throw new Exception('Detetion of Issue Message was unsuccessfull');
