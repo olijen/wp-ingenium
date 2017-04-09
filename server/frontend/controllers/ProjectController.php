@@ -7,24 +7,24 @@ use yii\filters\AccessControl;
 
 class ProjectController extends RestController
 {
-    // public function behaviors()
-    // {
-    //     $behaviors = parent::behaviors();
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
 
-    //     $behaviors['access'] = [
-    //         'class' => AccessControl::className(),
-    //         'only' => array_keys($this->actions()),
-    //         'rules' => [
-    //             [
-    //                 'allow' => true,
-    //                 'actions' => array_keys($this->actions()),
-    //                 'roles' => ['@'],
-    //             ],
-    //         ],
-    //     ];
+        $behaviors['access'] = [
+            'class' => AccessControl::className(),
+            'only' => array_keys($this->actions()),
+            'rules' => [
+                [
+                    'allow' => true,
+                    'actions' => array_keys($this->actions()),
+                    'roles' => ['@'],
+                ],
+            ],
+        ];
 
-    //     return $behaviors;
-    // }
+        return $behaviors;
+    }
 
     public function actions()
     {
