@@ -21,7 +21,7 @@ use Yii;
  * @property integer $updated_at
  * @property integer $flags
  * @property integer $last_login_at
- *
+ * todo: import
  * @property Customer[] $customers
  * @property IssueMessage[] $issueMessages
  * @property Master[] $masters
@@ -32,6 +32,7 @@ use Yii;
  */
 class UserRecord extends User
 {
+
     /**
      * @inheritdoc
      */

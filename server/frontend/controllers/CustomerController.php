@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\components\RestController;
+use yii\rest\OptionsAction;
 
 class CustomerController extends RestController
 {
@@ -25,8 +26,9 @@ class CustomerController extends RestController
 				'class' => 'frontend\controllers\customer\Delete',
 			],
 			'options' => [
-				'class' => 'frontend\controllers\customer\Options',
+				'class' => 'yii\rest\OptionsAction',
 			],
 		];
 	}
 }
+

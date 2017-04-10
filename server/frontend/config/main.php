@@ -29,17 +29,12 @@ $config = [
             ],
         ],
         'request' => [
-            'csrfParam' => '_csrf-frontend',
+            //todo: включить обратно
+            //'csrfParam' => '_csrf-frontend',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
             ],
         ],
-        /*'user' => [
-            'identityClass' => 'common\models\UserRecord',
-            'enableAutoLogin' => true,
-            'enableSession' => false,
-            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
-        ],*/
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',

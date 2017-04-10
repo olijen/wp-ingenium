@@ -27,14 +27,13 @@ export class ProjectService {
     delete(id: number) {
         return this.http.delete('/api/projects/' + id, this.jwt()).map((response: Response) => response.json());
     }
-
-    // private helper methods
+    
     //JSON web token
     private jwt() {
         // create authorization header with jwt token
-        let currentProject = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentProject && currentProject.token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentProject.token });
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser && currentUser.token) {
+            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             return new RequestOptions({ headers: headers });
         }
     }
