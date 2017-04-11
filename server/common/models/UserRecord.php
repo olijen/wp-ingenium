@@ -32,7 +32,6 @@ use Yii;
  */
 class UserRecord extends User
 {
-
     /**
      * @inheritdoc
      */
@@ -134,5 +133,10 @@ class UserRecord extends User
     public function getTokens()
     {
         return $this->hasMany(Token::className(), ['user_id' => 'id']);
+    }
+    
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['auth_key' => $token]);
     }
 }

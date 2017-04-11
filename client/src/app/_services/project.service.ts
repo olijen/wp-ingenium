@@ -8,8 +8,7 @@ export class ProjectService {
     constructor(private http: Http) { }
 
     getAll() {
-        console.log('Get all');
-        return this.http.get('http://localwpi.com/projects'/*, this.jwt()*/).map((response: Response) => response.json());
+        return this.http.get('http://localwpi.com/projects', this.jwt()).map((response: Response) => response.json());
     }
 
     getById(id: number) {
@@ -32,8 +31,8 @@ export class ProjectService {
     private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+        if (currentUser && currentUser.auth_key) {
+            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.auth_key });
             return new RequestOptions({ headers: headers });
         }
     }

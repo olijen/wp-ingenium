@@ -13,7 +13,7 @@ $config = [
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'authClientCollection' => [
-            //todo: защитить от взлома
+            //todo: защитить от взлома (искать в статье?)
             'class' => 'yii\authclient\Collection',
             'clients' => [
                 'google' => [
@@ -29,15 +29,16 @@ $config = [
             ],
         ],
         'request' => [
-            //todo: включить обратно
+            //todo: включить CSRF! Хотя, возможно в API это не нужно...
             //'csrfParam' => '_csrf-frontend',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
             ],
         ],
-        'session' => [
-            // this is the name of the session cookie used for login on the frontend
-            'name' => 'advanced-frontend',
+        'user' => [
+            'identityClass' => 'common\models\UserRecord',
+            'enableSession' => false,
+            'enableAutoLogin' => true,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

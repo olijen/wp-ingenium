@@ -3,7 +3,6 @@
 namespace frontend\components;
 
 
-use yii\filters\Cors;
 use yii\helpers\ArrayHelper;
 use yii\rest\Controller;
 use yii\web\ForbiddenHttpException;
@@ -14,7 +13,11 @@ class RestController extends Controller
     {
         return ArrayHelper::merge([
             'cors' => [
-                'class' => Cors::className(),
+                'class' => 'yii\filters\Cors',
+            ],
+            'authenticator' => [
+                'class' => 'yii\filters\auth\HttpBearerAuth',
+                'only' => array_keys($this->verbs()),
             ],
         ], parent::behaviors());
     }

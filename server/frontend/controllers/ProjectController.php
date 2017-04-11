@@ -25,7 +25,7 @@ class ProjectController extends RestController
                 'class' => 'frontend\controllers\project\Delete',
             ],
             'options' => [
-                'class' => 'frontend\controllers\project\Options',
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }
