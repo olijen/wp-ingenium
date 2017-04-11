@@ -3,7 +3,6 @@
 namespace frontend\controllers;
 
 use frontend\components\RestController;
-use yii\rest\OptionsAction;
 
 class CustomerController extends RestController
 {
