@@ -54,7 +54,7 @@ class ProjectRecord extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['customer_id', 'name', 'created_date', 'updated_date'], 'required'],
+            [['customer_id', 'name'], 'required'],
             [['customer_id', 'admin_url', 'admin_login', 'admin_password', 'created_date', 'updated_date'], 'integer'],
             [['description'], 'string'],
             [['name', 'url', 'ftp_host', 'ftp_login', 'ftp_pwd', 'ssh_host', 'ssh_login', 'ssh_key', 'repo_url', 'repo_login', 'repo_pwd', 'database_host', 'database_login', 'database_pwd', 'server_url', 'server_login', 'server_pwd'], 'string', 'max' => 255],
@@ -128,4 +128,14 @@ class ProjectRecord extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ProjectProposalMessageRecord::className(), ['project_id' => 'id']);
     }
+	
+	public function beforeSave($insert)
+	{
+		if ($this->isNewRecord) {
+			$this->created_date = time();
+		}
+		$this->updated_date = time();
+		
+		return parent::beforeSave($insert);
+	}
 }

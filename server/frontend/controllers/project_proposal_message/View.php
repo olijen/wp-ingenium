@@ -4,8 +4,6 @@ namespace frontend\controllers\project_proposal_message;
 
 use frontend\components\RestAction;
 use common\models\ProjectProposalMessageRecord;
-use common\models\ProjectRecord;
-use common\models\CustomerRecord;
 use Yii;
 
 class View extends RestAction
@@ -19,13 +17,9 @@ class View extends RestAction
 			return;
 		}
 
-		$ownerId = CustomerRecord::findOne(
-			ProjectRecord::findOne(
-				$projectProposalMessage->project_id
-			)->customer_id
-		)->user_id;
+		$user = $projectProposalMessage->project->customer->user;
 
-		if ($ownerId !== Yii::$app->user->identity->id) {
+		if ($user->id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}

@@ -14,12 +14,14 @@ class Create extends RestAction
 		$issueMessageFile = new IssueMessageFileRecord;
 		$issueMessageFile->setAttributes(Yii::$app->getRequest()->getBodyParams());
 		
-		$ownerId = IssueMessageRecord::findOne($issueMessageFile->issue_message_id)->user_id;
-		if ($ownerId !== Yii::$app->user->identity->id) {
+		$issueMessage = IssueMessageRecord::findOne($issueMessageFile->issue_message_id);
+		$user = $issueMessage->user;
+		
+		if ($user->id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}
-
+		
 		if (!$issueMessageFile->save() && $issueMessageFile->hasErrors()) {
 			return $issueMessageFile;
 		} elseif (!$issueMessageFile->id) {

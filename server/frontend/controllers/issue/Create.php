@@ -12,13 +12,20 @@ class Create extends RestAction
     {
 		$issue = new IssueRecord;
 		$issue->setAttributes(Yii::$app->getRequest()->getBodyParams());
-		$issue->created_date = $issue->updated_date = time();
+		
+		$user = $issue->project->customer->user;
+		
+		if ($user->id !== $this->getUserId()) {
+			Yii::$app->getResponse()->setStatusCode(403);
+			return;
+		}
 		
 		if (!$issue->save() && $issue->hasErrors()) {
 			return $issue;
 		} elseif (!$issue->id) {
 			throw new Exception('Creation of Issue was aborted by unknown reason');
 		}
+		
 		return $issue;
     }
 }

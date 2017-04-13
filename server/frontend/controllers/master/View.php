@@ -13,38 +13,28 @@ class View extends RestAction
 {
 	public function run($id)
 	{
-		$master = MasterRecord::findOne($id);
+		$customer = CustomerRecord::findOne(['user_id' => $this->getUserId()]);
+		
+    	$projectsIds = [];
 
-		if(is_null($master)) {
-			Yii::$app->getResponse()->setStatusCode(404);
-			return;
-		}
-
-		$userProjects = ProjectRecord::find()->where([
-    		'customer_id' => CustomerRecord::findOne([
-    			'user_id' => Yii::$app->user->identity->id
-    		])->id
-    	])->all();
-
-    	$projectsId = [];
-
-    	foreach ($userProjects as $project) {
-    		$projectsId[] = $project->id;
+    	foreach ($customer->projects as $project) {
+    		$projectsIds[] = $project->id;
     	}
+		
+    	$issues = IssueRecord::find()->where(['project_id' => $projectsIds])->all();
 
-    	$userIssues = IssueRecord::find()->where(['project_id' => $projectsId])->all();
+    	$mastersIds = [];
 
-    	$userMasters = [];
-
-    	foreach ($userIssues as $issue) {
-    		$userMasters[] = $issue->master_id;
+    	foreach ($issues as $issue) {
+    		$mastersIds[] = $issue->master_id;
     	}
-
-    	if (!in_array($id, $userMasters)) {
+		$mastersIds = array_unique($mastersIds);
+		
+    	if (!in_array($id, $mastersIds)) {
     		Yii::$app->getResponse()->setStatusCode(403);
 			return;
     	}
 
-    	return $master;
+    	return MasterRecord::findOne($id);
 	}
 }

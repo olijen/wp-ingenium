@@ -18,14 +18,18 @@ class Update extends RestAction
 			return;
 		}
 		
-		if ($project->customer_id !== CustomerRecord::findOne(['user_id' => Yii::$app->user->identity->id])->id) {
+		$customer = CustomerRecord::findOne(['user_id' => $this->getUserId()]);
+		
+		if ($project->customer_id !== $customer->id) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}
 
 		$project->setAttributes(Yii::$app->getRequest()->getBodyParams());
-		$project->updated_date = time();
-		$project->save();
+		
+		if (!$project->save() && $project->hasErrors()) {
+			return $project;
+		}
 		
 		return $project;
 	}

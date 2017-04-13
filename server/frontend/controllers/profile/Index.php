@@ -10,8 +10,6 @@ class Index extends RestAction
 {
 	public function run()
 	{
-		return ProfileRecord::find()->where([
-			'user_id' => Yii::$app->user->identity->id
-		])->all();
+		return ProfileRecord::findOne(['user_id' => $this->getUserId()]);
 	}
 }

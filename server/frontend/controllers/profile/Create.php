@@ -13,7 +13,11 @@ class Create extends RestAction
 		$profile = new ProfileRecord;
 		
 		$profile->setAttributes(Yii::$app->getRequest()->getBodyParams());
-		$profile->save();
+		$profile->user_id = $this->getUserId();
+		
+		if (!$profile->save() && $profile->hasErrors()) {
+			return $profile;
+		}
 		
 		return $profile;
 	}

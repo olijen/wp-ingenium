@@ -17,13 +17,21 @@ class Update extends RestAction
 			return;
 		}
 		
-		if ($profile->user_id !== Yii::$app->user->identity->id) {
+		if ($profile->user_id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}
 		
 		$profile->setAttributes(Yii::$app->getRequest()->getBodyParams());
-		$profile->save();
+		
+		if ($profile->user_id !== $this->getUserId()) {
+			Yii::$app->getResponse()->setStatusCode(403);
+			return;
+		}
+		
+		if (!$profile->save() && $profile->hasErrors()) {
+			return $profile;
+		}
 		
 		return $profile;
 	}

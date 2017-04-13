@@ -17,13 +17,23 @@ class Update extends RestAction
 			return;
 		}
 		
-		if ($projectMessage->user_id !== Yii::$app->user->identity->id) {
+		if ($projectMessage->user_id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}
 		
+		$project = $projectMessage->project;
+		
 		$projectMessage->setAttributes(Yii::$app->getRequest()->getBodyParams());
-		$projectMessage->save();
+		
+		if ($projectMessage->project_id !== $project->id) {
+			Yii::$app->getResponse()->setStatusCode(403);
+			return;
+		}
+		
+		if (!$projectMessage->save() && $projectMessage->hasErrors()) {
+			return $projectMessage;
+		}
 		
 		return $projectMessage;
 	}

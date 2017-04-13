@@ -3,9 +3,7 @@
 namespace frontend\controllers\project_proposal_message;
 
 use frontend\components\RestAction;
-use common\models\ProjectProposalMessageRecord;
 use common\models\ProjectRecord;
-use common\models\CustomerRecord;
 use Yii;
 
 class Index extends RestAction
@@ -19,14 +17,12 @@ class Index extends RestAction
 			return;
 		}
 
-		$ownerId = CustomerRecord::findOne(
-			$project->customer_id
-		)->user_id;
-		if ($ownerId !== Yii::$app->user->identity->id) {
+		$user = $project->customer->user;
+		if ($user->id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}
 
-		return ProjectProposalMessageRecord::find()->where(['project_id' => $project_id])->all();
+		return $project->projectProposalMessages;
 	}
 }

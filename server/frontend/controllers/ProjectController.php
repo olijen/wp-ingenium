@@ -7,25 +7,6 @@ use yii\filters\AccessControl;
 
 class ProjectController extends RestController
 {
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-
-        $behaviors['access'] = [
-            'class' => AccessControl::className(),
-            'only' => array_keys($this->actions()),
-            'rules' => [
-                [
-                    'allow' => true,
-                    'actions' => array_keys($this->actions()),
-                    'roles' => ['@'],
-                ],
-            ],
-        ];
-
-        return $behaviors;
-    }
-
     public function actions()
     {
         return [
@@ -45,7 +26,7 @@ class ProjectController extends RestController
                 'class' => 'frontend\controllers\project\Delete',
             ],
             'options' => [
-                'class' => 'frontend\controllers\project\Options',
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }

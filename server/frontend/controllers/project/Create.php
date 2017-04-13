@@ -4,6 +4,7 @@ namespace frontend\controllers\project;
 
 use frontend\components\RestAction;
 use common\models\ProjectRecord;
+use common\models\CustomerRecord;
 use Yii;
 
 class Create extends RestAction
@@ -12,7 +13,9 @@ class Create extends RestAction
 	{
 		$project = new ProjectRecord;
 		$project->setAttributes(Yii::$app->getRequest()->getBodyParams());
-		$project->created_date = $project->updated_date = time();
+		
+		$customer = CustomerRecord::findOne(['user_id' => $this->getUserId()]);
+		$project->customer_id = $customer->id;
 		
 		if (!$project->save() && $project->hasErrors()) {
 			return $project;

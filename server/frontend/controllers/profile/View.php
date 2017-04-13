@@ -9,19 +9,12 @@ use Yii;
 class View extends RestAction
 {
 	public function run($id)
-	{
-		$profile = ProfileRecord::findOne($id);
-		
-		if (is_null($profile)) {
-			Yii::$app->getResponse()->setStatusCode(404);
-			return;
-		}
-
-		if ($profile->user_id !== Yii::$app->user->identity->id) {
+	{	
+		if ($id != $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}
 		
-		return $profile;
+		return ProfileRecord::findOne($id);
 	}
 }

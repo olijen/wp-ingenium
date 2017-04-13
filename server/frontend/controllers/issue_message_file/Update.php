@@ -4,7 +4,6 @@ namespace frontend\controllers\issue_message_file;
 
 use frontend\components\RestAction;
 use common\models\IssueMessageFileRecord;
-use common\models\IssueMessageRecord;
 use Yii;
 
 class Update extends RestAction
@@ -18,14 +17,25 @@ class Update extends RestAction
 			return;
 		}
 
-		$ownerId = IssueMessageRecord::findOne($issueMessageFile->issue_message_id)->user_id;
-		if ($ownerId !== Yii::$app->user->identity->id) {
+		$user = $issueMessageFile->issueMessage->user;
+		
+		if ($user->id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}
 		
+		$issueMessage = $issueMessageFile->issueMessage;
+		
 		$issueMessageFile->setAttributes(Yii::$app->getRequest()->getBodyParams());
-		$issueMessageFile->save();
+		
+		if ($issueMessageFile->issue_message_id !== $issueMessage->id) {
+			Yii::$app->getResponse()->setStatusCode(403);
+			return;
+		}
+		
+		if (!$issueMessageFile->save() && $issueMessageFile->hasErrors()) {
+			return $issueMessageFile;
+		}
 		
 		return $issueMessageFile;
 	}

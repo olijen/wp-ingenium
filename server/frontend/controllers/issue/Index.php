@@ -3,13 +3,11 @@
 namespace frontend\controllers\issue;
 
 use frontend\components\RestAction;
-use common\models\IssueRecord;
 use common\models\ProjectRecord;
-use common\models\CustomerRecord;
 use Yii;
 
 class Index extends RestAction
-{
+{	
     function run($project_id)
     {
 		$project = ProjectRecord::findOne($project_id);
@@ -18,12 +16,14 @@ class Index extends RestAction
 			Yii::$app->getResponse()->setStatusCode(404);
 			return;
 		}
-
-		if ($project->customer_id !== CustomerRecord::findOne(['user_id' => Yii::$app->user->identity->id])->id) {
+		
+		$user = $project->customer->user;
+		
+		if ($user->id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}
-
-		return IssueRecord::find()->where(['project_id' => $project_id])->all();
+		
+		return $project->issues;
     }
 }

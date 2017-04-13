@@ -13,26 +13,23 @@ class Index extends RestAction
 {
     function run()
     {
-    	$userProjects = ProjectRecord::find()->where([
-    		'customer_id' => CustomerRecord::findOne([
-    			'user_id' => Yii::$app->user->identity->id
-    		])->id
-    	])->all();
+		$customer = CustomerRecord::findOne(['user_id' => $this->getUserId()]);
+		
+    	$projectsIds = [];
 
-    	$projectsId = [];
-
-    	foreach ($userProjects as $project) {
-    		$projectsId[] = $project->id;
+    	foreach ($customer->projects as $project) {
+    		$projectsIds[] = $project->id;
     	}
+		
+    	$issues = IssueRecord::find()->where(['project_id' => $projectsIds])->all();
 
-    	$userIssues = IssueRecord::find()->where(['project_id' => $projectsId])->all();
+    	$mastersIds = [];
 
-    	$userMasters = [];
-
-    	foreach ($userIssues as $issue) {
-    		$userMasters[] = $issue->master_id;
+    	foreach ($issues as $issue) {
+    		$mastersIds[] = $issue->master_id;
     	}
-
-    	return MasterRecord::find()->where(['id' => array_unique($userMasters)])->all();
+		$mastersIds = array_unique($mastersIds);
+		
+    	return MasterRecord::find()->where(['id' => $mastersIds])->all();
     }
 }

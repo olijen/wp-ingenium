@@ -25,7 +25,7 @@ class UserController extends RestController
                 'class' => 'frontend\controllers\user\Delete',
             ],
             'options' => [
-                'class' => 'frontend\controllers\user\Options',
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }

@@ -33,7 +33,7 @@ class ProjectProposalMessageRecord extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['master_id', 'project_id', 'text', 'created_date', 'updated_date'], 'required'],
+            [['master_id', 'project_id', 'text'], 'required'],
             [['master_id', 'project_id', 'created_date', 'updated_date'], 'integer'],
             [['text'], 'string'],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProjectRecord::className(), 'targetAttribute' => ['project_id' => 'id']],
@@ -71,4 +71,14 @@ class ProjectProposalMessageRecord extends \yii\db\ActiveRecord
     {
         return $this->hasOne(MasterRecord::className(), ['id' => 'master_id']);
     }
+	
+	public function beforeSave($insert)
+	{
+		if ($this->isNewRecord) {
+			$this->created_date = time();
+		}
+		$this->updated_date = time();
+		
+		return parent::beforeSave($insert);
+	}
 }

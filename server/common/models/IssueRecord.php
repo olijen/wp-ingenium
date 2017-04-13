@@ -43,7 +43,7 @@ class IssueRecord extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'created_date', 'updated_date'], 'required'], // 'project_id',
+            [['name'], 'required'], // 'project_id',
             [['project_id', 'master_id', 'master_price', 'created_date', 'updated_date'], 'integer'],
             [['description', 'master_comment'], 'string'],
             [['master_deadline'], 'safe'],
@@ -114,4 +114,14 @@ class IssueRecord extends \yii\db\ActiveRecord
     {
         return $this->hasMany(TaskRecord::className(), ['issue_id' => 'id']);
     }
+	
+	public function beforeSave($insert)
+	{
+		if ($this->isNewRecord) {
+			$this->created_date = time();
+		}
+		$this->updated_date = time();
+		
+		return parent::beforeSave($insert);
+	}
 }

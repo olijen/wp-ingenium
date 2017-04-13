@@ -4,9 +4,6 @@ namespace frontend\controllers\task;
 
 use frontend\components\RestAction;
 use common\models\TaskRecord;
-use common\models\IssueRecord;
-use common\models\ProjectRecord;
-use common\models\CustomerRecord;
 use Yii;
 
 class Delete extends RestAction
@@ -20,13 +17,9 @@ class Delete extends RestAction
 			return;
 		}
 		
-		$ownerId = CustomerRecord::findOne(
-			ProjectRecord::findOne(
-				IssueRecord::findOne($task->issue_id)->project_id
-			)->customer_id
-		)->user_id;
+		$user = $task->issue->project->customer->user;
 
-		if ($ownerId !== Yii::$app->user->identity->id) {
+		if ($user->id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}

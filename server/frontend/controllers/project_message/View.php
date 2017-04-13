@@ -17,7 +17,7 @@ class View extends RestAction
 			return;
 		}
 
-		if ($projectMessage->user_id !== Yii::$app->user->identity->id) {
+		if ($projectMessage->user_id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}

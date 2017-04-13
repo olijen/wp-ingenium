@@ -5,7 +5,6 @@ namespace frontend\controllers\project_proposal_message;
 use frontend\components\RestAction;
 use common\models\ProjectProposalMessageRecord;
 use common\models\ProjectRecord;
-use common\models\CustomerRecord;
 use Yii;
 
 class Create extends RestAction
@@ -15,18 +14,13 @@ class Create extends RestAction
 		$projectProposalMessage = new ProjectProposalMessageRecord;
 		$projectProposalMessage->setAttributes(Yii::$app->getRequest()->getBodyParams());
 
-		$ownerId = CustomerRecord::findOne(
-			ProjectRecord::findOne(
-				$projectProposalMessage->project_id
-			)->customer_id
-		)->user_id;
+		$project = ProjectRecord::findOne($projectProposalMessage->project_id);
+		$user = $project->customer->user;
 
-		if ($ownerId !== Yii::$app->user->identity->id) {
+		if ($user->id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}
-
-		$projectProposalMessage->created_date = $projectProposalMessage->updated_date = time();
 		
 		if (!$projectProposalMessage->save() && $projectProposalMessage->hasErrors()) {
 			return $projectProposalMessage;

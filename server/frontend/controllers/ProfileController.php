@@ -3,29 +3,9 @@
 namespace frontend\controllers;
 
 use frontend\components\RestController;
-use yii\filters\AccessControl;
 
 class ProfileController extends RestController
 {
-	public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-
-        $behaviors['access'] = [
-            'class' => AccessControl::className(),
-            'only' => array_keys($this->actions()),
-            'rules' => [
-                [
-                    'allow' => true,
-                    'actions' => array_keys($this->actions()),
-                    'roles' => ['@'],
-                ],
-            ],
-        ];
-
-        return $behaviors;
-    }
-
     public function actions()
     {
         return [
@@ -45,7 +25,7 @@ class ProfileController extends RestController
                 'class' => 'frontend\controllers\profile\Delete',
             ],
             'options' => [
-                'class' => 'frontend\controllers\profile\Options',
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }

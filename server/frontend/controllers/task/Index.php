@@ -3,10 +3,7 @@
 namespace frontend\controllers\task;
 
 use frontend\components\RestAction;
-use common\models\TaskRecord;
 use common\models\IssueRecord;
-use common\models\ProjectRecord;
-use common\models\CustomerRecord;
 use Yii;
 
 class Index extends RestAction
@@ -20,19 +17,13 @@ class Index extends RestAction
 			return;
 		}
 
-		$ownerId = CustomerRecord::findOne(
-			ProjectRecord::findOne(
-				$issue->project_id
-			)->customer_id
-		)->user_id;
+		$user = $issue->project->customer->user;
 
-		if ($ownerId !== Yii::$app->user->identity->id) {
+		if ($user->id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}
-
-		return TaskRecord::find()->where([
-				'issue_id' => $issue_id
-		])->all();
+		
+		return $issue->tasks;
 	}
 }

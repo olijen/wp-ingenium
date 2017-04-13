@@ -4,7 +4,6 @@ namespace frontend\controllers\issue_message_file;
 
 use frontend\components\RestAction;
 use common\models\IssueMessageFileRecord;
-use common\models\IssueMessageRecord;
 use Yii;
 
 class Delete extends RestAction
@@ -18,8 +17,9 @@ class Delete extends RestAction
 			return;
 		}
 
-		$ownerId = IssueMessageRecord::findOne($issueMessageFile->issue_message_id)->user_id;
-		if ($ownerId !== Yii::$app->user->identity->id) {
+		$user = $issueMessageFile->issueMessage->user;
+		
+		if ($user->id !== $this->getUserId()) {
 			Yii::$app->getResponse()->setStatusCode(403);
 			return;
 		}

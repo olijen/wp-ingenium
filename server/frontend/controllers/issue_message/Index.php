@@ -3,16 +3,27 @@
 namespace frontend\controllers\issue_message;
 
 use frontend\components\RestAction;
-use common\models\IssueMessageRecord;
+use common\models\IssueRecord;
 use Yii;
 
 class Index extends RestAction
 {
 	public function run($issue_id)
 	{
-		return IssueMessageRecord::find()->where([
-			'user_id' => Yii::$app->user->identity->id,
-			'issue_id' => $issue_id,
-		])->all();
+		$issue = IssueRecord::findOne($issue_id);
+		
+		if (is_null($issue)) {
+			Yii::$app->getResponse()->setStatusCode(404);
+			return;
+		}
+		
+		$user = $issue->project->customer->user;
+
+		if ($user->id !== $this->getUserId()) {
+			Yii::$app->getResponse()->setStatusCode(403);
+			return;
+		}
+
+		return $issue->issueMessages;
 	}
 }
