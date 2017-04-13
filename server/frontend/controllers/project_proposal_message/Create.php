@@ -9,25 +9,25 @@ use Yii;
 
 class Create extends RestAction
 {
-	public function run()
-	{
-		$projectProposalMessage = new ProjectProposalMessageRecord;
-		$projectProposalMessage->setAttributes(Yii::$app->getRequest()->getBodyParams());
+    public function run()
+    {
+        $projectProposalMessage = new ProjectProposalMessageRecord;
+        $projectProposalMessage->setAttributes(Yii::$app->getRequest()->getBodyParams());
 
-		$project = ProjectRecord::findOne($projectProposalMessage->project_id);
-		$user = $project->customer->user;
+        $project = ProjectRecord::findOne($projectProposalMessage->project_id);
+        $user = $project->customer->user;
 
-		if ($user->id !== $this->getUserId()) {
-			Yii::$app->getResponse()->setStatusCode(403);
-			return;
-		}
-		
-		if (!$projectProposalMessage->save() && $projectProposalMessage->hasErrors()) {
-			return $projectProposalMessage;
-		} elseif (!$projectProposalMessage->id) {
-			throw new Exception('Creation of Project Proposal Message was aborted by unknown reason');
-		}
-		
-		return $projectProposalMessage;
-	}
+        if ($user->id !== $this->getUserId()) {
+            Yii::$app->getResponse()->setStatusCode(403);
+            return;
+        }
+        
+        if (!$projectProposalMessage->save() && $projectProposalMessage->hasErrors()) {
+            Yii::$app->getResponse()->setStatusCode(400);
+        } elseif (!$projectProposalMessage->id) {
+            throw new Exception('Creation of Project Proposal Message was aborted by unknown reason');
+        }
+        
+        return $projectProposalMessage;
+    }
 }

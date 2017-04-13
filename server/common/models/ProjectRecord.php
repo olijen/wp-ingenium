@@ -128,14 +128,14 @@ class ProjectRecord extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ProjectProposalMessageRecord::className(), ['project_id' => 'id']);
     }
-	
-	public function beforeSave($insert)
-	{
-		if ($this->isNewRecord) {
-			$this->created_date = time();
-		}
-		$this->updated_date = time();
-		
-		return parent::beforeSave($insert);
-	}
+    
+    public function beforeSave($insert)
+    {
+        if ($this->isNewRecord) {
+            $this->created_date = time();
+        }
+        $this->updated_date = time();
+        
+        return parent::beforeSave($insert);
+    }
 }

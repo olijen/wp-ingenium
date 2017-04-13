@@ -9,9 +9,9 @@ use Yii;
 
 class Index extends RestAction
 {
-	public function run()
-	{
-		$customer = CustomerRecord::findOne(['user_id' => $this->getUserId()]);
-		return $customer->projects;
-	}
+    public function run()
+    {
+        $customer = CustomerRecord::findOne(['user_id' => $this->getUserId()]);
+        return $customer->projects;
+    }
 }

@@ -9,22 +9,22 @@ use Yii;
 
 class View extends RestAction
 {
-	public function run($id)
-	{
-		$project = ProjectRecord::findOne($id);
+    public function run($id)
+    {
+        $project = ProjectRecord::findOne($id);
 
-		if (is_null($project)) {
-			Yii::$app->getResponse()->setStatusCode(404);
-			return;
-		}
-		
-		$customer = CustomerRecord::findOne(['user_id' => $this->getUserId()]);
-		
-		if ($project->customer_id !== $customer->id) {
-			Yii::$app->getResponse()->setStatusCode(403);
-			return;
-		}
+        if (is_null($project)) {
+            Yii::$app->getResponse()->setStatusCode(404);
+            return;
+        }
+        
+        $customer = CustomerRecord::findOne(['user_id' => $this->getUserId()]);
+        
+        if ($project->customer_id !== $customer->id) {
+            Yii::$app->getResponse()->setStatusCode(403);
+            return;
+        }
 
-		return $project;
-	}
+        return $project;
+    }
 }

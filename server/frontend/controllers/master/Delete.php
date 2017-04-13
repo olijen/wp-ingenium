@@ -7,9 +7,9 @@ use Yii;
 
 class Delete extends RestAction
 {
-	public function run($id)
-	{
-		Yii::$app->getResponse()->setStatusCode(403);
-		return;
-	}
+    public function run($id)
+    {
+        Yii::$app->getResponse()->setStatusCode(403);
+        return;
+    }
 }

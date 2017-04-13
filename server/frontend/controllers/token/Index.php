@@ -7,8 +7,8 @@ use common\models\TokenRecord;
 
 class Index extends RestAction
 {
-	public function run()
-	{
-		return TokenRecord::find()->all();
-	}
+    public function run()
+    {
+        return TokenRecord::find()->all();
+    }
 }

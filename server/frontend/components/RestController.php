@@ -7,30 +7,29 @@ use yii\filters\Cors;
 use yii\filters\AccessControl;
 use yii\rest\Controller;
 use yii\web\ForbiddenHttpException;
-use yii\helpers\ArrayHelper;
 
 class RestController extends Controller
 {
     public function behaviors()
     {
-		return ArrayHelper::merge([
-		
-			// Для того, чтоб работали междоменные запросы
-			'corsFilter' => [
-				'class' => Cors::className(),
-			],
-			
-			'access' => [
-				'class' => AccessControl::className(),
-				'rules' => [
-					[
-						'allow' => true,
-						'actions' => array_keys($this->actions()),
-						'roles' => ['@'],
-					],
-				],
-			],
-		], parent::behaviors());
+        return ArrayHelper::merge([
+        
+            // Для того, чтоб работали междоменные запросы
+            'corsFilter' => [
+                'class' => Cors::className(),
+            ],
+            
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => array_keys($this->actions()),
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ], parent::behaviors());
     }
 
     /**

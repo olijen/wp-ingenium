@@ -8,8 +8,8 @@ use Yii;
 
 class Index extends RestAction
 {
-	public function run()
-	{
-		return ProfileRecord::findOne(['user_id' => $this->getUserId()]);
-	}
+    public function run()
+    {
+        return ProfileRecord::findOne(['user_id' => $this->getUserId()]);
+    }
 }

@@ -71,14 +71,14 @@ class ProjectProposalMessageRecord extends \yii\db\ActiveRecord
     {
         return $this->hasOne(MasterRecord::className(), ['id' => 'master_id']);
     }
-	
-	public function beforeSave($insert)
-	{
-		if ($this->isNewRecord) {
-			$this->created_date = time();
-		}
-		$this->updated_date = time();
-		
-		return parent::beforeSave($insert);
-	}
+    
+    public function beforeSave($insert)
+    {
+        if ($this->isNewRecord) {
+            $this->created_date = time();
+        }
+        $this->updated_date = time();
+        
+        return parent::beforeSave($insert);
+    }
 }

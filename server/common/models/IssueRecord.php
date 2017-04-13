@@ -114,14 +114,14 @@ class IssueRecord extends \yii\db\ActiveRecord
     {
         return $this->hasMany(TaskRecord::className(), ['issue_id' => 'id']);
     }
-	
-	public function beforeSave($insert)
-	{
-		if ($this->isNewRecord) {
-			$this->created_date = time();
-		}
-		$this->updated_date = time();
-		
-		return parent::beforeSave($insert);
-	}
+    
+    public function beforeSave($insert)
+    {
+        if ($this->isNewRecord) {
+            $this->created_date = time();
+        }
+        $this->updated_date = time();
+        
+        return parent::beforeSave($insert);
+    }
 }

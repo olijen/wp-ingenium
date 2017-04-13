@@ -8,13 +8,13 @@ use Yii;
 
 class Create extends RestAction
 {
-	public function run()
-	{
-		$token = new TokenRecord;
-		
-		$token->setAttributes(Yii::$app->getRequest()->getBodyParams());
-		$token->save();
-		
-		return $token;
-	}
+    public function run()
+    {
+        $token = new TokenRecord;
+        
+        $token->setAttributes(Yii::$app->getRequest()->getBodyParams());
+        $token->save();
+        
+        return $token;
+    }
 }
