@@ -2,8 +2,8 @@
 
 namespace frontend\components;
 
-use yii\filters\Cors;
-use yii\filters\AccessControl;
+
+use yii\helpers\ArrayHelper;
 use yii\rest\Controller;
 use yii\web\ForbiddenHttpException;
 
@@ -12,12 +12,13 @@ class RestController extends Controller
     public function behaviors()
     {
         return ArrayHelper::merge([
-        
-            // Для того, чтоб работали междоменные запросы
-            'corsFilter' => [
-                'class' => Cors::className(),
+            'cors' => [
+                'class' => 'yii\filters\Cors',
             ],
-            
+            'authenticator' => [
+                'class' => 'yii\filters\auth\HttpBearerAuth',
+                'only' => array_keys($this->verbs()),
+            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
@@ -30,7 +31,7 @@ class RestController extends Controller
             ],
         ], parent::behaviors());
     }
-
+    
     /**
      * @inheritdoc
      */
