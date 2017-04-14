@@ -8,8 +8,5 @@ use Yii;
 
 class Create extends RestAction
 {
-    public function run()
-	{
-		
-	}
+	
 }
