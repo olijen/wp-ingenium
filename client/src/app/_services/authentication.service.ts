@@ -8,19 +8,21 @@ export class AuthenticationService {
     constructor(private http: Http) { }
 
     login(username: string, password: string) {
-        return this.http.post('/api/authenticate', JSON.stringify({ username: username, password: password }))
-            .map((response: Response) => {
-                // login successful if there's a jwt token in the response
-                let user = response.json();
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                }
-            });
+        return this.http.post(
+            'http://localwpi.com/customers?login=1',
+            { username: username, password: password /*todo: remember me*/}
+        ).map((response: Response) => {
+            let user = response.json();
+            if (user && user.auth_key) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                console.log(localStorage);
+            } else {
+                //todo: alert block
+            }
+        });
     }
 
     logout() {
-        // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
     }
 }

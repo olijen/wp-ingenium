@@ -21,7 +21,7 @@ use Yii;
  * @property integer $updated_at
  * @property integer $flags
  * @property integer $last_login_at
- *
+ * todo: import
  * @property Customer[] $customers
  * @property IssueMessage[] $issueMessages
  * @property Master[] $masters
@@ -133,5 +133,10 @@ class UserRecord extends User
     public function getTokens()
     {
         return $this->hasMany(Token::className(), ['user_id' => 'id']);
+    }
+    
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['auth_key' => $token]);
     }
 }
