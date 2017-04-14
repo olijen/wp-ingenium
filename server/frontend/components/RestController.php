@@ -2,7 +2,6 @@
 
 namespace frontend\components;
 
-
 use yii\filters\Cors;
 use yii\filters\AccessControl;
 use yii\rest\Controller;
