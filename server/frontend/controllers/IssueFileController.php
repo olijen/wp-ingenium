@@ -25,7 +25,7 @@ class IssueFileController extends RestController
                 'class' => 'frontend\controllers\issue_file\Delete',
             ],
             'options' => [
-                'class' => 'frontend\controllers\issue_file\Options',
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }

@@ -8,18 +8,33 @@ use Yii;
 
 class Update extends RestAction
 {
-	public function run($id)
-	{
-		$issueMessage = IssueMessageRecord::findOne($id);
-		
-		if (is_null($issueMessage)) {
-			Yii::$app->getResponse()->setStatusCode(404);
-			return;
-		}
-		
-		$issueMessage->setAttributes(Yii::$app->getRequest()->getBodyParams());
-		$issueMessage->save();
-		
-		return $issueMessage;
-	}
+    public function run($id)
+    {
+        $issueMessage = IssueMessageRecord::findOne($id);
+        
+        if (is_null($issueMessage)) {
+            Yii::$app->getResponse()->setStatusCode(404);
+            return;
+        }
+
+        if ($issueMessage->user_id !== $this->getUserId()) {
+            Yii::$app->getResponse()->setStatusCode(403);
+            return;
+        }
+        
+        $issue = $issueMessage->issue;
+        
+        $issueMessage->setAttributes(Yii::$app->getRequest()->getBodyParams());
+        
+        if ($issueMessage->issue_id !== $issue->id) {
+            Yii::$app->getResponse()->setStatusCode(403);
+            return;
+        }
+        
+        if (!$issueMessage->save() && $issueMessage->hasErrors()) {
+            Yii::$app->getResponse()->setStatusCode(400);
+        }
+        
+        return $issueMessage;
+    }
 }

@@ -9,6 +9,7 @@ use yii\web\ForbiddenHttpException;
 
 class RestController extends Controller
 {
+
     public function behaviors()
     {
         return ArrayHelper::merge([
@@ -19,9 +20,19 @@ class RestController extends Controller
                 'class' => 'yii\filters\auth\HttpBearerAuth',
                 'only' => array_keys($this->verbs()),
             ],
+            'access' => [
+                'class' => '\yii\filters\AccessControl',
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => array_keys($this->actions()),
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
         ], parent::behaviors());
     }
-    
+
     /**
      * @inheritdoc
      */

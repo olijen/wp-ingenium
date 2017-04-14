@@ -25,7 +25,7 @@ class TokenController extends RestController
                 'class' => 'frontend\controllers\token\Delete',
             ],
             'options' => [
-                'class' => 'frontend\controllers\token\Options',
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }

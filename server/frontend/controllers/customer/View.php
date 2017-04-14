@@ -8,15 +8,15 @@ use Yii;
 
 class View extends RestAction
 {
-	public function run($id)
-	{
-		$customer = CustomerRecord::findOne($id);
-		
-		if (!$customer) {
-			Yii::$app->getResponse()->setStatusCode(404);
-			return;
-		}
-		
-		return $customer;
-	}
+    public function run($id)
+    {
+        $customer = CustomerRecord::findOne($id);
+        
+        if (!$customer) {
+            Yii::$app->getResponse()->setStatusCode(404);
+            return;
+        }
+        
+        return $customer;
+    }
 }

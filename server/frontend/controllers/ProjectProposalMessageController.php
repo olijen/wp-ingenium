@@ -25,7 +25,7 @@ class ProjectProposalMessageController extends RestController
                 'class' => 'frontend\controllers\project_proposal_message\Delete',
             ],
             'options' => [
-                'class' => 'frontend\controllers\project_proposal_message\Options',
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }

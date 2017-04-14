@@ -25,7 +25,7 @@ class TaskController extends RestController
                 'class' => 'frontend\controllers\task\Delete',
             ],
             'options' => [
-                'class' => 'frontend\controllers\task\Options',
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }

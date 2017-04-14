@@ -25,7 +25,7 @@ class IssueMessageFileController extends RestController
                 'class' => 'frontend\controllers\issue_message_file\Delete',
             ],
             'options' => [
-                'class' => 'frontend\controllers\issue_message_file\Options',
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }

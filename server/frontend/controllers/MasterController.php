@@ -25,7 +25,7 @@ class MasterController extends RestController
                 'class' => 'frontend\controllers\master\Delete',
             ],
             'options' => [
-                'class' => 'frontend\controllers\master\Options',
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }

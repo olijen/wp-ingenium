@@ -33,7 +33,7 @@ class ProjectMessageRecord extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'project_id', 'text', 'created_date', 'updated_date'], 'required'],
+            [['user_id', 'project_id', 'text'], 'required'],
             [['user_id', 'project_id', 'created_date', 'updated_date'], 'integer'],
             [['text'], 'string'],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProjectRecord::className(), 'targetAttribute' => ['project_id' => 'id']],
@@ -70,5 +70,15 @@ class ProjectMessageRecord extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(UserRecord::className(), ['id' => 'user_id']);
+    }
+    
+    public function beforeSave($insert)
+    {
+        if ($this->isNewRecord) {
+            $this->created_date = time();
+        }
+        $this->updated_date = time();
+        
+        return parent::beforeSave($insert);
     }
 }

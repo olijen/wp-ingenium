@@ -34,7 +34,7 @@ class IssueMessageRecord extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'issue_id', 'text', 'created_date', 'updated_date'], 'required'],
+            [['user_id', 'issue_id', 'text'], 'required'],
             [['user_id', 'issue_id', 'created_date', 'updated_date'], 'integer'],
             [['text'], 'string'],
             [['issue_id'], 'exist', 'skipOnError' => true, 'targetClass' => IssueRecord::className(), 'targetAttribute' => ['issue_id' => 'id']],
@@ -79,5 +79,15 @@ class IssueMessageRecord extends \yii\db\ActiveRecord
     public function getIssueMessageFiles()
     {
         return $this->hasMany(IssueMessageFileRecord::className(), ['issue_message_id' => 'id']);
+    }
+    
+    public function beforeSave($insert)
+    {
+        if ($this->isNewRecord) {
+            $this->created_date = time();
+        }
+        $this->updated_date = time();
+        
+        return parent::beforeSave($insert);
     }
 }

@@ -25,7 +25,7 @@ class ProfileController extends RestController
                 'class' => 'frontend\controllers\profile\Delete',
             ],
             'options' => [
-                'class' => 'frontend\controllers\profile\Options',
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }

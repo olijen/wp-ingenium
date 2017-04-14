@@ -8,13 +8,17 @@ use Yii;
 
 class Create extends RestAction
 {
-	public function run()
-	{
-		$profile = new ProfileRecord;
-		
-		$profile->setAttributes(Yii::$app->getRequest()->getBodyParams());
-		$profile->save();
-		
-		return $profile;
-	}
+    public function run()
+    {
+        $profile = new ProfileRecord;
+        
+        $profile->setAttributes(Yii::$app->getRequest()->getBodyParams());
+        $profile->user_id = $this->getUserId();
+        
+        if (!$profile->save() && $profile->hasErrors()) {
+            Yii::$app->getResponse()->setStatusCode(400);
+        }
+        
+        return $profile;
+    }
 }

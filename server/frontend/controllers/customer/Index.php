@@ -7,8 +7,8 @@ use common\models\CustomerRecord;
 
 class Index extends RestAction
 {
-	public function run()
-	{
-		return CustomerRecord::find()->all();
-	}
+    public function run()
+    {
+        return CustomerRecord::find()->all();
+    }
 }
