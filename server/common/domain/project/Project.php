@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models\project;
+namespace common\domain\project;
 
 use frontend\models\issue\Issue;
 use frontend\models\values\Message;

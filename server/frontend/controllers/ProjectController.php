@@ -3,7 +3,6 @@
 namespace frontend\controllers;
 
 use frontend\components\RestController;
-use yii\filters\AccessControl;
 
 class ProjectController extends RestController
 {

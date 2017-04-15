@@ -9,7 +9,7 @@ export class AuthenticationService {
 
     login(username: string, password: string) {
         return this.http.post(
-            'http://localwpi.com/customers?login=1',
+            'http://localwpi.com/security?login=1',
             { username: username, password: password /*todo: remember me*/}
         ).map((response: Response) => {
             let user = response.json();

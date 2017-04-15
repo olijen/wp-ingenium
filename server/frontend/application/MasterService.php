@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\services;
+namespace frontend\application;
 
 use common\models\AccountRecord;
 use Yii;

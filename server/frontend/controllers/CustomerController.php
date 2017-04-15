@@ -27,6 +27,9 @@ class CustomerController extends RestController
             'options' => [
                 'class' => 'yii\rest\OptionsAction',
             ],
+            'security' => [
+                'class' => 'frontend\controllers\customer\Security',
+            ],
         ];
     }
 }

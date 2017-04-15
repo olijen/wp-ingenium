@@ -75,7 +75,8 @@ $config = [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'project-proposal-message'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'task'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'token'],
-                'login/<service:google|facebook|etc>' => 'site/login'
+                'OPTIONS security' => 'customer/options',
+                'security' => 'customer/security'
             ],
         ],
     ],

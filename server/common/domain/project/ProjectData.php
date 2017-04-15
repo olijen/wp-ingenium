@@ -1,7 +1,6 @@
 <?php
 
-namespace frontend\models\project;
-
+namespace common\domain\project;
 
 class ProjectData
 {

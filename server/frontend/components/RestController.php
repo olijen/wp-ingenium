@@ -9,28 +9,28 @@ use yii\web\ForbiddenHttpException;
 
 class RestController extends Controller
 {
-
     public function behaviors()
     {
-        return ArrayHelper::merge([
+        return ArrayHelper::merge(parent::behaviors(), [
             'cors' => [
                 'class' => 'yii\filters\Cors',
             ],
             'authenticator' => [
                 'class' => 'yii\filters\auth\HttpBearerAuth',
-                'only' => array_keys($this->verbs()),
+                'only' => ['index', 'view', 'create', 'update', 'delete'],
             ],
-            'access' => [
+            //todo: так у нас получается, что действий для неавторизованных пользователей вообще нет. Может раньше и прокатывало, но сейчас у нас авторизация через customer/create
+            /*'access' => [
                 'class' => '\yii\filters\AccessControl',
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => array_keys($this->actions()),
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'roles' => ['@'],
                     ],
                 ],
-            ],
-        ], parent::behaviors());
+            ],*/
+        ]);
     }
 
     /**
@@ -52,6 +52,7 @@ class RestController extends Controller
             'create' => ['POST'],
             'update' => ['PUT', 'PATCH'],
             'delete' => ['DELETE'],
+            'login' => ['POST'],
         ];
     }
 
@@ -71,3 +72,4 @@ class RestController extends Controller
     {
     }
 }
+
