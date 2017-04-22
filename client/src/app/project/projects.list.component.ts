@@ -6,7 +6,7 @@ import { ProjectService } from '../_services/index';
 @Component({
     selector: 'projects-list',
     moduleId: module.id,
-    templateUrl: 'projectslist.component.html'
+    templateUrl: 'projects.list.component.html'
 })
 
 export class ProjectsListComponent implements OnInit {

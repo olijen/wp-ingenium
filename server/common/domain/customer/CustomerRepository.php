@@ -34,11 +34,17 @@ class CustomerRepository
         return $this->customer->findOne(['user_id' => $id]);
     }
 
+    /**
+     *
+     */
     public function fetchAll()
     {
 
     }
 
+    /**
+     *
+     */
     public function create()
     {
 

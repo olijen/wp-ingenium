@@ -1,2 +1,3 @@
 export * from './project.component';
-export * from './projectslist.component';
+export * from './projects.list.component';
+export * from './project.form.component';

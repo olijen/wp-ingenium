@@ -13,8 +13,10 @@ export class ProjectComponent implements OnInit {
     project:Project;
     id:number;
 
-    constructor(private projectService:ProjectService,
-                private activateRoute:ActivatedRoute) {
+    constructor(
+        private projectService:ProjectService,
+        private activateRoute:ActivatedRoute
+    ) {
         this.id = activateRoute.snapshot.params['id'];
     }
 

@@ -1,11 +1,13 @@
 <div class="col-md-6 col-md-offset-3">
     <h4>Добро пожаловать, <b>{{currentUser.username}}!</b></h4>
     <h6>Давайте немного поработаем</h6>
-    <p><a class="btn btn-outline-warning" [routerLink]="['/notify']">Ваши уведомления <span class="badge">5</span></a></p>
-    <p><a class="btn btn-outline-primary" (click)="toggleProjectList()">Ваши проекты</a></p>
-    <div *ngIf="showProjectsList">
-        <projects-list></projects-list>
-    </div>
-    <p><a class="btn btn-outline-success"[routerLink]="['/contact']">Связаться с тех поддержкой</a></p>
-    <p><a class="btn btn-outline-danger" [routerLink]="['/login']">Выйти</a></p>
+
+    <p><a class="btn btn-block btn-outline-primary" [routerLink]="['/notify']">Ваши уведомления <span class="badge">5</span></a></p>
+    <p><a class="btn btn-block btn-outline-primary" [routerLink]="['/projects']">Ваши проекты <span class="badge">5</span></a></p>
+    <p><a class="btn btn-block btn-outline-primary" [routerLink]="['/issues']">Ваши задачи <span class="badge">5</span></a></p>
+
+    <p>
+        <a class="btn btn-outline-success"[routerLink]="['/contact']">Связаться с тех поддержкой</a>
+        <a class="btn btn-outline-danger" [routerLink]="['/login']">Выйти</a>
+    </p>
 </div>

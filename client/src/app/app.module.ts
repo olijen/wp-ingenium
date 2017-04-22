@@ -8,12 +8,14 @@ import { routing }        from './app.routing';
 
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService, ProjectService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, ProjectService, IssueService } from './_services/index';
 
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
-import { ProjectComponent, ProjectsListComponent } from './project/index';
+
+import { ProjectComponent, ProjectsListComponent, ProjectFormComponent } from './project/index';
+import { IssueComponent, IssuesListComponent, IssueFormComponent } from './issue/index';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers/index';
@@ -39,8 +41,14 @@ import { BaseRequestOptions } from '@angular/http';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
+        
         ProjectComponent,
-        ProjectsListComponent
+        ProjectsListComponent,
+        ProjectFormComponent,
+
+        IssueComponent,
+        IssuesListComponent,
+        IssueFormComponent
     ],
     //классы, создающие сервисы, используемые модулем
     providers: [
@@ -49,6 +57,7 @@ import { BaseRequestOptions } from '@angular/http';
         AuthenticationService,
         UserService,
         ProjectService,
+        IssueService,
 
         // providers used to create fake backend
         //fakeBackendProvider,

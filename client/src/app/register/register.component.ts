@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { AlertService, UserService } from '../_services/index';
+import {AlertService, UserService} from '../_services/index';
 
 @Component({
     moduleId: module.id,
@@ -9,13 +9,13 @@ import { AlertService, UserService } from '../_services/index';
 })
 
 export class RegisterComponent {
-    model: any = {};
-    loading = false;
+    model:any = {};
+    loading:boolean = false;
 
-    constructor(
-        private router: Router,
-        private userService: UserService,
-        private alertService: AlertService) { }
+    constructor(private router:Router,
+                private userService:UserService,
+                private alertService:AlertService) {
+    }
 
     register() {
         this.loading = true;

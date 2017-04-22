@@ -17,6 +17,8 @@ free -m
 top -b |head -n5
 htop
 ps -eo pmem,pcpu,rss,vsize,args | sort -k 1 -r | less
+#tcp connections
+netstat -t | less
 
 # mysql optimization
 mysqlcheck -Ao

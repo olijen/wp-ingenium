@@ -1,0 +1,12 @@
+<div>
+    <h3>Задачи по проекту:</h3>
+    <button class="btn btn-outline-success" [routerLink]="'/issues/form'">Новое задание</button>
+    <ul>
+        <li *ngFor="let issue of issues">
+            <div>
+                <a class="btn btn-block btn-outline-success " [routerLink]="'/issues/' + issue.id">{{issue.name}}</a>
+                <span *ngIf="issue.deadline">( {{issue.deadline}} )</span>
+            </div>
+        </li>
+    </ul>
+</div>
