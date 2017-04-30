@@ -12,13 +12,20 @@ mysql -u root -p < dump.sql
 scp user@remote.host:file.txt /some/local/directory
 
 # used OS resources
-df -h
-free -m
-top -b |head -n5
-htop
-ps -eo pmem,pcpu,rss,vsize,args | sort -k 1 -r | less
-#tcp connections
-netstat -t | less
+htop #cpu (visual)
+top #cpu
+top -b |head -n5 #cpu
+mpstat -P ALL #cpu
+ps -eo pmem,pcpu,rss,vsize,args | sort -k 1 -r | less #...
+free -m #memory usage
+df -h #disk load
+iotop #read/write
+cbm #network trafic
+dstat #total statistic
+
+#tcp
+netstat -t | less #hz
+netstat -natp #who on port
 
 # mysql optimization
 mysqlcheck -Ao

@@ -8,6 +8,10 @@ composer --prefer-dist  install
 
 php -S localhost:3333 -t app.php
 
+#APACHE
+ls -la  /usr/lib/apache2/modules/ | grep 'expires\|headers'
+sudo a2enmod headers
+
 
 
 

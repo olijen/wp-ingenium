@@ -34,14 +34,14 @@ export class ProjectFormComponent implements OnInit {
     private create() 
     {
         console.log('create form');
-        this.projectService.create(this.project).subscribe((project: Project) => {
-            console.log(project);
+        this.projectService.create(this.project).subscribe((id:number) => {
+            this.project.id = id;
         });
     }
 
     private update() {
-        this.projectService.update(this.project).subscribe((project: Project) => {
-            console.log(project);
+        this.projectService.update(this.project).subscribe((result:boolean) => {
+            console.log(result);
         });
     }
 

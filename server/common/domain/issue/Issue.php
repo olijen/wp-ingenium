@@ -1,20 +1,26 @@
 <?php
 
-namespace frontend\models\issue;
+namespace common\domain\issue;
 
-use frontend\models\project\Project;
-use frontend\models\user\Master;
-use frontend\models\user\MasterData;
-use frontend\models\values\File;
-use frontend\models\values\Message;
+use common\domain\human\Master;
+use common\domain\project\Project;
 
 class Issue
 {
+    //properties
     public $name;
     public $description;
     public $deadline;
     public $date;
 
+    //states
+    /**
+     * @var IssueStage
+     */
+    public $stage;
+
+
+    //relations
     /**
      * @var Master
      */
@@ -31,11 +37,6 @@ class Issue
     public $masterData;
 
     /**
-     * @var IssueStage
-     */
-    public $stage;
-
-    /**
      * @var Message[]
      */
     public $messages;
@@ -49,5 +50,10 @@ class Issue
      * @var File[]
      */
     public $files;
+
+    public function __construct()
+    {
+
+    }
 
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from '../_models/index';
-import { UserService } from '../_services/index';
 
 @Component({
     moduleId: module.id,
@@ -9,19 +8,14 @@ import { UserService } from '../_services/index';
 })
 
 export class HomeComponent implements OnInit {
-    currentUser: User;
+    customer: User;
     users: User[] = [];
-    showProjectsList: boolean = true;
 
-    constructor(private userService: UserService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    constructor() {
+        this.customer = JSON.parse(localStorage.getItem('customer'));
     }
 
     ngOnInit() {
         
-    }
-
-    toggleProjectList() {
-        this.showProjectsList = !this.showProjectsList
     }
 }

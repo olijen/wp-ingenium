@@ -24,11 +24,11 @@ class CustomerController extends RestController
             'delete' => [
                 'class' => 'frontend\controllers\customer\Delete',
             ],
-            'options' => [
-                'class' => 'yii\rest\OptionsAction',
-            ],
             'security' => [
                 'class' => 'frontend\controllers\customer\Security',
+            ],
+            'options' => [
+                'class' => 'yii\rest\OptionsAction',
             ],
         ];
     }

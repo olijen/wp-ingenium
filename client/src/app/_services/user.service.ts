@@ -7,32 +7,41 @@ import { User } from '../_models/index';
 export class UserService {
     constructor(private http: Http) { }
 
-    getAll() {
-        return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
+    getById(id: number) {
+        return this.http.get('http://localwpi.com/customers' + id, this.jwt())
+            .map((response: Response) => response.json());
     }
 
-    getById(id: number) {
-        return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+    getCurrent() {
+        let id = JSON.parse(localStorage.getItem('auth')).id;
+        return this.http.get('http://localwpi.com/customers/' + id, this.jwt())
+            .map((response: Response) => {
+                console.log(response, 'getCurrent resp');
+                response = response.json();
+                localStorage.setItem('customer', JSON.stringify(response));
+                return response;
+            });
     }
 
     create(user: User) {
-        return this.http.post('http://localwpi.com/customers', user, this.jwt()).map((response: Response) => response.json());
+        return this.http.post('http://localwpi.com/customers', user, this.jwt())
+            .map((response: Response) => response.json());
     }
 
     update(user: User) {
-        return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
+        return this.http.put('http://localwpi.com/customers' + user.id, user, this.jwt())
+            .map((response: Response) => response.json());
     }
 
     delete(id: number) {
-        return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.delete('http://localwpi.com/customers' + id, this.jwt())
+            .map((response: Response) => response.json());
     }
 
-    // private helper methods
-
     private jwt() {
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (currentUser && currentUser.auth_key) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.auth_key });
+        let currentUser = JSON.parse(localStorage.getItem('auth'));
+        if (currentUser && currentUser.token) {
+            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             return new RequestOptions({ headers: headers });
         }
     }

@@ -24,8 +24,9 @@ export class ProjectComponent implements OnInit {
         this.loadProject();
     }
 
-    deleteProject() {
-        this.projectService.delete(this.id).subscribe(() => {
+    delete() {
+        this.projectService.delete(this.id).subscribe((result:boolean) => {
+            console.log(result);
         });
     }
 

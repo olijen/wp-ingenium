@@ -2,10 +2,13 @@
 
 namespace frontend\application;
 
-
-use common\domain\customer\CustomerRepository;
 use common\domain\project\ProjectRepository;
-use yii\web\IdentityInterface;
+use common\domain\human\CustomerRepository;
+use common\domain\project\ProjectFactory;
+use common\domain\project\Project;
+use common\components\ObjectConverter;
+
+use Yii;
 
 class ProjectService
 {
@@ -13,37 +16,48 @@ class ProjectService
      * @var ProjectRepository
      */
     private $projectRepository;
-
+    
     /**
-     * @var IdentityInterface
+     * @var CustomerRepository
      */
-    private $identity;
+    private $customerRepository;
 
-    public function __construct(IdentityInterface $identity, ProjectRepository $projectRepository)
+    public function __construct()
     {
-        $this->identity = $identity;
-        $this->projectRepository = $projectRepository;
+        $this->projectRepository = new ProjectRepository();
+        $this->customerRepository = new CustomerRepository();
     }
 
-    public function getById()
+    public function getById($id)
     {
-
+        return $this->projectRepository->fetchById($id);
     }
 
     public function getAll()
     {
-        $customer = (new CustomerRepository())
-            ->fetchByIdentityId($this->identity->getId());
-        return $this->projectRepository->fetchAllForCustomer($customer->id);
+        $customer = $this->customerRepository->fetchById(Yii::$app->user->identity->getId());
+        return $this->projectRepository->fetchAllForCustomer($customer);
+    }
+    
+    public function create($projectData)
+    {
+        $customer = $this->customerRepository->fetchById(Yii::$app->user->identity->getId());
+        $project = ProjectFactory::create($projectData, $customer);
+        return $this->projectRepository->save($project);
     }
 
-    public function update()
+    public function updateById($projectId, $projectData)
     {
-
+        $customer = $this->customerRepository->fetchById(Yii::$app->user->identity->getId());
+        $project = $this->projectRepository->fetchOneForCustomer($customer, ['id' => $projectId]);
+        ObjectConverter::loadDataToObject($projectData, $project);
+        return is_bool($this->projectRepository->save($project));
     }
 
-    public function delete()
+    public function deleteById($projectId)
     {
-
+        $customer = $this->customerRepository->fetchById(Yii::$app->user->identity->getId());
+        $project = $this->projectRepository->fetchOneForCustomer($customer, ['id' => $projectId]);
+        $this->projectRepository->delete($project);
     }
 }

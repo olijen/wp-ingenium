@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models\issue;
+namespace common\domain\issue;
 use Exception;
 
 

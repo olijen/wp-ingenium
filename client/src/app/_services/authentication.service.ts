@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map'
 
 @Injectable()
@@ -9,20 +8,22 @@ export class AuthenticationService {
 
     login(username: string, password: string) {
         return this.http.post(
-            'http://localwpi.com/security?login=1',
+            'http://localwpi.com/security',
             { username: username, password: password /*todo: remember me*/}
         ).map((response: Response) => {
+            console.log(response);
             let user = response.json();
-            if (user && user.auth_key) {
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                console.log(localStorage);
+            if (user && user.token) {
+                localStorage.setItem('auth', JSON.stringify(user));
             } else {
+                console.log('token empty');
                 //todo: alert block
             }
         });
     }
 
     logout() {
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('auth');
+        localStorage.removeItem('customer');
     }
 }

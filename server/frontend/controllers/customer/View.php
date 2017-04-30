@@ -2,21 +2,15 @@
 
 namespace frontend\controllers\customer;
 
+use frontend\application\CustomerService;
+
 use frontend\components\RestAction;
-use common\models\CustomerRecord;
 use Yii;
 
 class View extends RestAction
 {
-    public function run($id)
+    public function run()
     {
-        $customer = CustomerRecord::findOne($id);
-        
-        if (!$customer) {
-            Yii::$app->getResponse()->setStatusCode(404);
-            return;
-        }
-        
-        return $customer;
+        return (new CustomerService())->getById($this->getUserId());
     }
 }
