@@ -1,8 +1,8 @@
 <?php
 
-namespace frontend\models\values;
+namespace common\domain\values;
 
-use frontend\models\user\Human;
+use common\domain\human\Human;
 
 class Message
 {

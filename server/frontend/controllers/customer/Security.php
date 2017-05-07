@@ -15,7 +15,7 @@ class Security extends RestAction
         if (!Yii::$app->user->isGuest) {
             return 'user is logged in';
         }
-        $token = (new CustomerService())->login(Yii::$app->request->post());
+        $token = self::getCustomerService()->login(Yii::$app->request->post());
         if (!$token) {
             //todo
             return 'token empty';

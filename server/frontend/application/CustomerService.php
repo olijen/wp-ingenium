@@ -12,16 +12,16 @@ use dektrium\user\models\RegistrationForm;
 use Exception;
 use Yii;
 
-class CustomerService
+class CustomerService implements ICustomerService
 {
     /**
      * @var CustomerRepository
      */
     private $customerRepository;
 
-    public function __construct()
+    public function __construct(CustomerRepository $cr)
     {
-        $this->customerRepository = new CustomerRepository();
+        $this->customerRepository = $cr;
     }
 
     public function getById($id)
@@ -29,25 +29,31 @@ class CustomerService
         return $this->customerRepository->fetchById($id);
     }
 
-    public function update($data)
+    public function updateById($customerId, $customerData)
     {
-        
+        // TODO: Implement updateById() method.
     }
 
-    public function delete($id)
+    public function deleteById($customerId)
     {
-
+        // TODO: Implement deleteById() method.
     }
 
     //todo: register и login привязать к предметной области
 
-    public function register($data)
+    /**
+     * @param $customerData
+     * @return bool|CustomerRecord|RegistrationForm
+     * @throws Exception
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function register($customerData)
     {
         /** @var RegistrationForm $userForm */
         $userForm = Yii::createObject(RegistrationForm::class);
-        $userForm->username = $data['username'];
-        $userForm->password = $data['password'];
-        $userForm->email = $data['email'];
+        $userForm->username = $customerData['username'];
+        $userForm->password = $customerData['password'];
+        $userForm->email = $customerData['email'];
 
         if (!$userForm->validate()) {
             Yii::$app->getResponse()->setStatusCode(400);
@@ -77,16 +83,17 @@ class CustomerService
     }
 
     /**
-     * @param $data
+     * @param $loginData
      * @return bool|string token
      * @throws \yii\base\InvalidConfigException
+     * @internal param $data
      */
-    public function login($data)
+    public function login($loginData)
     {
         /** @var LoginForm $loginForm */
         $loginForm = Yii::createObject(LoginForm::class);
-        $loginForm->login = $data['username'];
-        $loginForm->password = $data['password'];
+        $loginForm->login = $loginData['username'];
+        $loginForm->password = $loginData['password'];
 
         if (!$loginForm->login()) {
             return false;

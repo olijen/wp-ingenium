@@ -6,6 +6,14 @@ use frontend\components\RestController;
 
 class CustomerController extends RestController
 {
+    protected function authenticatorBehavior()
+    {
+        return [
+            'class' => 'yii\filters\auth\HttpBearerAuth',
+            'only' => ['index', /*'view', 'create',*/ 'update', 'delete'],
+        ];
+    }
+
     public function actions()
     {
         return [

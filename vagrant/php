@@ -12,6 +12,7 @@ php -S localhost:3333 -t app.php
 ls -la  /usr/lib/apache2/modules/ | grep 'expires\|headers'
 sudo a2enmod headers
 
+localwpi.com?XDEBUG_SESSION_START=PHPSTORM
 
 
 

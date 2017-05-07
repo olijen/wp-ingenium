@@ -11,6 +11,6 @@ class Update extends RestAction
 {
     public function run($id)
     {
-        (new ProjectService())->updateById($id, Yii::$app->request->post());
+        self::getProjectService()->updateById($id, Yii::$app->request->post());
     }
 }

@@ -5,7 +5,6 @@ namespace common\domain\project;
 use common\components\DomainModel;
 use common\domain\human\Customer;
 use common\domain\issue\Issue;
-use frontend\models\values\Message;
 
 class Project extends DomainModel
 {
@@ -15,6 +14,8 @@ class Project extends DomainModel
     public $name;
     public $url;
     public $description;
+
+    public $requestedFields = [];
 
     //states
     public $inProgress;
@@ -50,5 +51,34 @@ class Project extends DomainModel
     {
         $this->name = $name;
         $this->customer_id = $customer_id;
+    }
+    
+    public function makeNew()
+    {
+        
+    }
+    
+    public function makePublicized()
+    {
+        
+    }
+    
+    public function makeClosed()
+    {
+        
+    }
+
+    public function requestDataFields(array $fields)
+    {
+        foreach ($fields as $field) {
+            $this->projectData->requestField($field);
+        }
+    }
+
+    public function responseDataFields(array $fields)
+    {
+        foreach ($fields as $field) {
+            $this->projectData->responseField($field);
+        }
     }
 }

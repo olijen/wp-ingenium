@@ -24,10 +24,11 @@ class Human extends DomainModel
     public $account;
 
     //behaviors
-    public function __construct($name, $email)
+    public function __construct($name, $email, $user)
     {
         $this->name = $name;
         $this->email = $email;
+        $this->account = new Account($user);
     }
 
     public function messageTo(Human $human)

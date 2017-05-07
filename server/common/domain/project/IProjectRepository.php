@@ -2,14 +2,12 @@
 
 namespace common\domain\project;
 
-use common\domain\human\Customer;
-
 interface IProjectRepository
 {
-    public function fetchAll();
-    public function fetchAllForCustomer(Customer $customer);
-    public function fetchOneForCustomer(Customer $customer);
-    public function fetchById($id);
+    public function fetchAllForCustomer();
+    public function fetchByIdForCustomer($id);
+    public function detectByIdForCustomer($id);
+
     public function save(Project $project);
-    public function delete(Project $project);
+    public function removeById($projectId);
 }

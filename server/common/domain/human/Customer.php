@@ -17,8 +17,8 @@ class Customer extends Human
      */
     private $projects;
     
-    public function __construct($name, $email)
+    public function __construct($name, $email, $user)
     {
-        parent::__construct($name, $email);
+        parent::__construct($name, $email, $user);
     }
 }

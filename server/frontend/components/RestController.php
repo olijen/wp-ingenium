@@ -2,25 +2,29 @@
 
 namespace frontend\components;
 
+use frontend\application\CustomerService;
+use frontend\application\IssueService;
+use frontend\application\MasterService;
+use frontend\application\ProjectService;
 use yii\rest\Controller;
 
 class RestController extends Controller
 {
+    public function init()
+    {
+        parent::init();
+    }
+
     public function behaviors()
     {
         return array_merge(parent::behaviors(), [
             'authenticator' => $this->authenticatorBehavior(),
-            'access' => $this->accessBehavior(),
+            //'access' => $this->accessBehavior(),
 
             'cors' => [
                 'class' => 'yii\filters\Cors',
             ],
         ]);
-    }
-
-    public function init()
-    {
-        parent::init();
     }
 
     public function checkAccess($action, $model = null, $params = [])

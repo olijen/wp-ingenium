@@ -1,6 +1,6 @@
-<div>
+<div *ngIf="projectId && issues">
     <h3>Задачи по проекту:</h3>
-    <button class="btn btn-outline-success" [routerLink]="'/issues/form'">Новое задание</button>
+    <button class="btn btn-outline-success" [routerLink]="'/projects/' + projectId + '/issues/form'">Новое задание</button>
     <ul>
         <li *ngFor="let issue of issues">
             <div>

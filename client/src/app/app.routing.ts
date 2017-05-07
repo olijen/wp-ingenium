@@ -11,8 +11,9 @@ import { AuthGuard } from './_guards/index';
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
+    { path: 'projects/:project_id/issues/form', component: IssueFormComponent },
 
+    { path: 'register', component: RegisterComponent },
     { path: 'projects/form', component: ProjectFormComponent },
     { path: 'projects/form/:id', component: ProjectFormComponent },
     { path: 'projects', component: ProjectsListComponent },

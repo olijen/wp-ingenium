@@ -2,12 +2,17 @@
 
 namespace common\domain\issue;
 
+use common\components\DomainModel;
 use common\domain\human\Master;
 use common\domain\project\Project;
+use common\domain\values\File;
+use common\domain\values\Message;
+use frontend\models\issue\Task;
 
-class Issue
+class Issue extends DomainModel
 {
     //properties
+    public $id;
     public $name;
     public $description;
     public $deadline;
@@ -19,8 +24,11 @@ class Issue
      */
     public $stage;
 
-
     //relations
+    /**
+     * @var int ID of Project
+     */
+    public $project_id;
     /**
      * @var Master
      */
@@ -51,9 +59,11 @@ class Issue
      */
     public $files;
 
-    public function __construct()
+    //behaviors
+    public function __construct($name, $project_id, $stage)
     {
-
+        $this->name = $name;
+        $this->project_id = $project_id;
+        $this->stage = new IssueStage($stage);
     }
-
 }

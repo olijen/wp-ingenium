@@ -39,7 +39,7 @@ export class IssueFormComponent implements OnInit {
     private create() 
     {
         console.log('create form');
-        this.issueService.create(this.issue).subscribe((issue: Issue) => {
+        this.issueService.create(this.issue, this.project.id).subscribe((issue: Issue) => {
             console.log(issue);
         });
     }

@@ -10,6 +10,6 @@ class Delete extends RestAction
 {
     public function run($id)
     {
-        (new ProjectService)->deleteById($id);
+        self::getProjectService()->deleteById($id);
     }
 }

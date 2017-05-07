@@ -1,7 +1,7 @@
 # Log to file after vagrant up
 VAGRANT_LOG=info vagrant up --debug  | tee vagrant/vagrant.log
 
-#get all files from ftp
+# get all files from ftp
 wget -r -l 100 ftp://1.2.3.4/dir/* --ftp-user=username --ftp-password=password
 
 # version error
@@ -10,6 +10,18 @@ mysql -u root -p < dump.sql
 
 # https://www.shellhacks.com/ru/copy-files-ssh-10-examples/
 scp user@remote.host:file.txt /some/local/directory
+
+# PATCH
+git diff dev..dev-hotfix-docs --no-prefix > some_thing.patch
+patch -p0 < some_thing.patch
+
+# CLEAR PORT
+fuser -vn tcp 80
+kill -9 12345
+
+# NON FREE LOCAL IP-s
+nmap -v -sP 192.168.0.142/24
+nmap -v -sP 192.168.0.142/24 | grep down
 
 # used OS resources
 htop #cpu (visual)

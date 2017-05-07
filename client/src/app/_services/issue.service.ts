@@ -7,8 +7,8 @@ import { Issue } from '../_models/index';
 export class IssueService {
     constructor(private http: Http) { }
 
-    getAll() {
-        return this.http.get('http://localwpi.com/issues', IssueService.jwt())
+    getAll(projectId: number) {
+        return this.http.get('http://localwpi.com/projects/' + projectId + '/issues', IssueService.jwt())
             .map((response: Response) => response.json());
     }
 
@@ -17,8 +17,8 @@ export class IssueService {
             .map((response: Response) => response.json());
     }
 
-    create(issue: Issue) {
-        return this.http.post('http://localwpi.com/issues', issue, IssueService.jwt())
+    create(issue: Issue, projectId: number) {
+        return this.http.post('http://localwpi.com/projects/' + projectId + '/issues', issue, IssueService.jwt())
             .map((response: Response) => response.json());
     }
 

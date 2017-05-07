@@ -19,9 +19,11 @@ class ObjectConverter
      */
     public static function convert(array $row, $className)
     {
-        return (isset($row[0]) && is_array($row[0]))
-            ? self::convertDataArray($row, $className)
-            : self::convertData($row, $className);
+        if (!empty($row))
+            return (isset($row[0]) && is_array($row[0]))
+                ? self::convertDataArray($row, $className)
+                : self::convertData($row, $className);
+        return [];
     }
 
     /**
@@ -80,8 +82,9 @@ class ObjectConverter
      * Выбирает параметры для конструктора из массива всех полей
      * Удаляет из массива полей свойства для конструктора, т.к. они уже будут загружены в класс и не нужны больше
      * @param $className
-     * @param $data
+     * @param array $data
      * @return DomainModel
+     * @throws Exception
      */
     private static function createInstance($className, array &$data)
     {
@@ -89,10 +92,17 @@ class ObjectConverter
 
         $arguments = [];
         foreach ($parameters as $parameter) {
+            if (!isset($data[$parameter->name])) {
+                throw new Exception("Ошибка при конвертации $className (свойство для конструктора '$parameter->name' не передано с \$data)");
+            }
             $arguments[$parameter->name] = $data[$parameter->name];
             unset($data[$parameter->name]);
         }
 
-        return (new \ReflectionClass($className))->newInstanceArgs($arguments);
+        $instance = (new \ReflectionClass($className))->newInstanceArgs($arguments);
+        if (!$instance instanceof DomainModel) {
+            throw new Exception("$className не является наследником BusinessObject");
+        }
+        return $instance;
     }
 }

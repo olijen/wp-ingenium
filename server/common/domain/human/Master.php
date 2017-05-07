@@ -2,14 +2,14 @@
 
 namespace common\domain\human;
 
-use frontend\models\issue\Issue;
+use common\domain\issue\Issue;
 
 class Master extends Human
 {
     //properties
 
     //states
-    public $readyForWork = true;
+    public $ready = true;
 
     //relations
     /**
@@ -18,8 +18,18 @@ class Master extends Human
     public $issues;
 
     //behaviors
-    public function __construct($name, $email)
+    public function __construct($name, $email, $user)
     {
-        parent::__construct($name, $email);
+        parent::__construct($name, $email, $user);
+    }
+
+    public function makeReady()
+    {
+        
+    }
+
+    public function makeBusy()
+    {
+        
     }
 }

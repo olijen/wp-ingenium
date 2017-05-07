@@ -1,7 +1,6 @@
 <?php
 
-namespace frontend\models\values;
-
+namespace common\domain\values;
 
 class File
 {

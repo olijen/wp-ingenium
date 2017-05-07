@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 import { Issue } from '../_models/index';
 import { IssueService } from '../_services/index';
@@ -11,26 +12,22 @@ import { IssueService } from '../_services/index';
 export class IssuesListComponent implements OnInit
 {
     issues: Issue[] = [];
+    projectId: number;
 
-    constructor(private issueService: IssueService)
-    {
+    constructor(
+        private issueService: IssueService,
+        private activateRoute: ActivatedRoute
+    ) {
         console.log('construct issue');
+        this.projectId = activateRoute.snapshot.params['project_id'];
     }
 
-    ngOnInit()
-    {
+    ngOnInit() {
         console.log('Load issues');
         this.loadAll();
     }
 
-    create(issue)
-    {
-        this.issueService.create(issue).subscribe(() => { this.loadAll() });
+    private loadAll() {
+        this.issueService.getAll(this.projectId).subscribe(issues => { this.issues = issues; });
     }
-
-    private loadAll()
-    {
-        this.issueService.getAll().subscribe(issues => { this.issues = issues; });
-    }
-
 }

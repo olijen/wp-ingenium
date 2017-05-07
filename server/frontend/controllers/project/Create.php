@@ -10,6 +10,6 @@ class Create extends RestAction
 {
     public function run()
     {
-        return (new ProjectService)->create(Yii::$app->request->post());
+        return self::getProjectService()->create(Yii::$app->request->post());
     }
 }
