@@ -1,4 +1,5 @@
 .footer {
+    border-top: 3px solid silver;
     position: absolute;
     bottom: 0;
     width: 100%;

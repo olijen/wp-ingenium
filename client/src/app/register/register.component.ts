@@ -9,25 +9,26 @@ import {AlertService, UserService} from '../_services/index';
 })
 
 export class RegisterComponent {
+    
     model:any = {};
     loading:boolean = false;
 
-    constructor(private router:Router,
-                private userService:UserService,
-                private alertService:AlertService) {
-    }
+    constructor(
+        private router:Router,
+        private userService:UserService,
+        private alertService:AlertService
+    ) {}
 
     register() {
         this.loading = true;
         this.userService.create(this.model)
             .subscribe(
                 data => {
-                    this.alertService.success('Registration successful', true);
+                    this.alertService.success('Приятно познакомиться!', true);
                     this.router.navigate(['/login']);
                 },
                 error => {
-                    //todo: show errors from error object
-                    this.alertService.error(error);
+                    this.alertService.serverValidationErrors(JSON.parse(error._body));
                     this.loading = false;
                 });
     }

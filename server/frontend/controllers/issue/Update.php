@@ -8,8 +8,8 @@ use Yii;
 
 class Update extends RestAction
 {
-    public function run($issue_id)
+    public function run($id)
     {
-        self::getIssueService()->updateById($issue_id, Yii::$app->request->post());
+        self::getIssueService()->updateById($id, Yii::$app->request->post());
     }
 }

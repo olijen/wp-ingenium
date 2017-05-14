@@ -7,8 +7,8 @@ use Yii;
 
 class Delete extends RestAction
 {
-    public function run($issue_id)
+    public function run($id)
     {
-        self::getIssueService()->deleteById($issue_id);
+        self::getIssueService()->deleteById($id);
     }
 }

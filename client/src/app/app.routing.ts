@@ -15,13 +15,13 @@ const appRoutes: Routes = [
 
     { path: 'register', component: RegisterComponent },
     { path: 'projects/form', component: ProjectFormComponent },
-    { path: 'projects/form/:id', component: ProjectFormComponent },
+    { path: 'projects/:id/form', component: ProjectFormComponent },
     { path: 'projects', component: ProjectsListComponent },
     { path: 'projects/:project_id/issues', component: IssuesListComponent },
     { path: 'projects/:id', component: ProjectComponent },
 
     { path: 'issues/form', component: IssueFormComponent },
-    { path: 'issues/form/:id', component: IssueFormComponent },
+    { path: 'issues/:id/form', component: IssueFormComponent },
     { path: 'issues/:id', component: IssueComponent },
 
     // otherwise redirect to home

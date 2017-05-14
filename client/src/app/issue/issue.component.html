@@ -1,8 +1,13 @@
 <div *ngIf="issue" class="col-md-6 col-md-offset-3">
-  <h3>Проект: {{issue.name}}</h3>
-  <button class="btn btn-success" (click)="createIssue()">Задачи проекта</button>
-  <button class="btn btn-info" [routerLink]="['/issues/form', issue.id]">Изменить проект</button>
-  <button class="btn btn-danger" (click)="delete()">Удалить проект</button>
+  <h3>Задача: {{issue.name}}</h3>
+
+  <button class="btn btn-info" [routerLink]="'/issues/' + issue.id + '/form'">
+    Изменить задачу
+  </button>
+
+  <button class="btn btn-danger" (click)="delete()">
+    Удалить задачу
+  </button>
 
   <div class="issue_block">
     <ul>

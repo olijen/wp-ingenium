@@ -10,6 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 
 export class ProjectFormComponent implements OnInit {
+    
     id:number;
     project:Project;
 
@@ -33,25 +34,29 @@ export class ProjectFormComponent implements OnInit {
 
     private create() 
     {
-        console.log('create form');
-        this.projectService.create(this.project).subscribe((id:number) => {
-            this.project.id = id;
-        });
+        this.projectService
+            .create(this.project)
+            .subscribe((id:number) => {
+                this.project.id = id;
+            });
     }
 
     private update() {
-        this.projectService.update(this.project).subscribe((result:boolean) => {
-            console.log(result);
-        });
+        this.projectService
+            .update(this.project)
+            .subscribe((result:boolean) => {
+                console.log(result);
+            });
     }
 
     private loadProject() 
     {
         if (this.id) {
-            this.projectService.getById(this.id).subscribe((project: Project) => {
-                console.log(project);
-                this.project = project;
-            });
+            this.projectService
+                .getById(this.id)
+                .subscribe((project: Project) => {
+                    this.project = project;
+                });
         } else {
             this.project = new Project;
         }

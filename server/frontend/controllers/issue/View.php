@@ -8,8 +8,8 @@ use Yii;
 
 class View extends RestAction
 {
-    public function run($issue_id)
+    public function run($id)
     {
-        return self::getIssueService()->getById($issue_id);
+        return self::getIssueService()->getById($id);
     }
 }

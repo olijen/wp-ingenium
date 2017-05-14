@@ -44,11 +44,12 @@ abstract class Repository extends Component implements IRepository
      * @return bool|int id
      * @throws Exception
      */
-    protected function insert(array $fields)
+    protected function insert(array $fields, $table = null)
     {
+        $table = $table ? $table : $this->getTableName();
         $result = Yii::$app->db
             ->createCommand()
-            ->insert($this->getTableName(), $fields)
+            ->insert($table, $fields)
             ->execute();
 
         return (boolval($result)) ? $result : false;
@@ -56,15 +57,17 @@ abstract class Repository extends Component implements IRepository
 
     /**
      * @param array $fields
-     * @param $condition
+     * @param mixed $condition
+     * @param string $table
      * @return bool
      * @throws Exception
      */
-    protected function update(array $fields, $condition)
+    protected function update(array $fields, $condition, $table = null)
     {
+        $table = $table ? $table : $this->getTableName();
         $result = Yii::$app->db
             ->createCommand()
-            ->update($this->getTableName(), $fields, $condition)
+            ->update($table, $fields, $condition)
             ->execute();
 
         return boolval($result);

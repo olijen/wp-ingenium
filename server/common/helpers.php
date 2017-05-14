@@ -51,6 +51,11 @@ function service($name)
     return container()->get($name . 'Service');
 }
 
+function post()
+{
+    return app()->request->post();
+}
+
 //--- Logs and dumps
 
 /**

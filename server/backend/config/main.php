@@ -11,7 +11,14 @@ $config = [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'robot' => [
+            'class' => \backend\modules\robot\Module::class,
+        ],
+        'integration' => [
+            'class' => \backend\modules\integration\Module::class,
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -37,14 +44,12 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

@@ -3,27 +3,18 @@
 namespace frontend\controllers\issue_message;
 
 use frontend\components\RestAction;
-use common\models\IssueRecord;
 use Yii;
 
+/**
+ * Этот экшн для получения только сообщений по issue_id.
+ * Для получения и issue и сообщений юзай /issues/<id>
+ * Class Index
+ * @package frontend\controllers\issue_message
+ */
 class Index extends RestAction
 {
     public function run($issue_id)
     {
-        $issue = IssueRecord::findOne($issue_id);
-        
-        if (is_null($issue)) {
-            Yii::$app->getResponse()->setStatusCode(404);
-            return;
-        }
-        
-        $user = $issue->project->customer->user;
-
-        if ($user->id !== $this->getUserId()) {
-            Yii::$app->getResponse()->setStatusCode(403);
-            return;
-        }
-
-        return $issue->issueMessages;
+        return self::getIssueMessageService()->getAllByIssueId($issue_id);
     }
 }

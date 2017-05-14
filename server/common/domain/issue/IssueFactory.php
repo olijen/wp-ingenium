@@ -15,6 +15,11 @@ class IssueFactory extends Factory
         ]), Issue::class);
     }
 
+    /**
+     * @param $projectId
+     * @param $issueData
+     * @return Issue
+     */
     public static function createByProjectId($projectId, $issueData)
     {
         return ObjectConverter::convert(array_merge($issueData, [

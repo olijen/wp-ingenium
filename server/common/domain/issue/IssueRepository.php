@@ -5,6 +5,7 @@ namespace common\domain\issue;
 use common\components\ObjectConverter;
 use common\components\Repository;
 
+use common\domain\values\Message;
 use Yii;
 
 class IssueRepository extends Repository implements IIssueRepository
@@ -28,8 +29,10 @@ class IssueRepository extends Repository implements IIssueRepository
         $rows = $this->query
             ->select('issue.id, issue.name, issue.description, issue.project_id')
             ->from('issue')
+            
             ->leftJoin('project', 'project.id = issue.project_id')
             ->leftJoin('customer', 'customer.id = project.customer_id')
+            
             ->where('customer.id=:customer_id AND project.id=:project_id    ', [
                 'customer_id' => identity()->id,
                 'project_id' => $projectId,
@@ -43,8 +46,11 @@ class IssueRepository extends Repository implements IIssueRepository
         $rows = $this->query
             ->select('issue.id, issue.name, issue.description, issue.project_id')
             ->from('issue')
-            ->leftJoin('project', 'project.id = issue.id')
-            ->leftJoin('customer', 'customer.id = issue.id')
+            ->leftJoin('issue_message', 'project.id = issue.project_id')
+            
+            ->leftJoin('project', 'project.id = issue.project_id')
+            ->leftJoin('customer', 'customer.id = project.customer_id')
+            
             ->where('issue.id=:issue_id AND customer.id=:customer_id', [
                 'issue_id' => $issueId,
                 'customer_id' => identity()->id
@@ -58,8 +64,10 @@ class IssueRepository extends Repository implements IIssueRepository
         $row = $this->query
             ->select('issue.id')
             ->from('issue')
-            ->leftJoin('project', 'project.id = issue.id')
-            ->leftJoin('customer', 'customer.id = issue.id')
+            
+            ->leftJoin('project', 'project.id = issue.project_id')
+            ->leftJoin('customer', 'customer.id = project.customer_id')
+            
             ->where('issue.id=:issue_id AND customer.id=:customer_id', [
                 'issue_id' => $issueId,
                 'customer_id' => identity()->id
@@ -80,6 +88,15 @@ class IssueRepository extends Repository implements IIssueRepository
             $row['project_id'] = $issue->project_id;
             return $this->insert($row);
         }
+    }
+
+    public function saveMessageForIssue(Issue $issue, Message $message)
+    {
+        return $this->insert([
+            'text' => $message->text,
+            'user_id' => $message->author_id,
+            'issue_id' => $issue->id,
+        ], 'issue_message');
     }
 
     public function removeById($issueId)

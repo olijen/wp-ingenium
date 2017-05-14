@@ -60,10 +60,15 @@ class Issue extends DomainModel
     public $files;
 
     //behaviors
-    public function __construct($name, $project_id, $stage)
+    public function __construct($name, $project_id)
     {
         $this->name = $name;
         $this->project_id = $project_id;
-        $this->stage = new IssueStage($stage);
+        //$this->stage = new IssueStage($stage);
+    }
+
+    public function addMessage(Message $message)
+    {
+        $this->messages[] = $message;
     }
 }

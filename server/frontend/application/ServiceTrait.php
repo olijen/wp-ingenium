@@ -38,4 +38,12 @@ trait ServiceTrait
     {
         return service('issue');
     }
+
+    /**
+     * @return IssueMessageService
+     */
+    public static function getIssueMessageService()
+    {
+        return service('issueMessage');
+    }
 }

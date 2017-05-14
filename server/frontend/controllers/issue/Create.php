@@ -10,6 +10,6 @@ class Create extends RestAction
 { 
     public function run($project_id)
     {
-        self::getIssueService()->createByProjectId($project_id, Yii::$app->request->post());
+        return self::getIssueService()->createByProjectId($project_id, Yii::$app->request->post());
     }
 }

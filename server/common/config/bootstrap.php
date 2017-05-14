@@ -19,5 +19,10 @@ Yii::$container->setDefinitions([
         $ir = new \common\domain\issue\IssueRepository();
         $pr = new \common\domain\project\ProjectRepository();
         return new \frontend\application\IssueService($ir, $pr);
+    },
+    'issueMessageService' => function () {
+        $ir = new \common\domain\issue\IssueRepository();
+        $pr = new \common\domain\project\ProjectRepository();
+        return new \frontend\application\IssueService($ir, $pr);
     }
 ]);

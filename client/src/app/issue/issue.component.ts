@@ -21,15 +21,15 @@ export class IssueComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadIssue();
+    this.load();
   }
 
-  deleteIssue() {
+  delete() {
     this.issueService.delete(this.id).subscribe(() => {
     });
   }
 
-  private loadIssue() {
+  private load() {
     this.issueService.getById(this.id).subscribe((issue: Issue) => {
       console.log(issue);
       this.issue = issue;

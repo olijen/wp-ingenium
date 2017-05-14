@@ -14,11 +14,16 @@ return [
         'POST projects/<project_id>/issues' => 'issue/create',
         'OPTIONS projects/<project_id>/issues' => 'issue/options',
 
+        ['class' => 'yii\rest\UrlRule', 'controller' => 'issue-message'],
+        'GET,HEAD issues/<issue_id>/messages' => 'issue-message/index',
+        'POST issues/<issue_id>/messages' => 'issue-message/create',
+        'OPTIONS issues/<issue_id>/messages' => 'issue-message/options',
+
         ['class' => 'yii\rest\UrlRule', 'controller' => 'customer'],
 
         ['class' => 'yii\rest\UrlRule', 'controller' => 'issue-file'],
 
-        ['class' => 'yii\rest\UrlRule', 'controller' => 'issue-message'],
+
 
         ['class' => 'yii\rest\UrlRule', 'controller' => 'issue-message-file'],
 

@@ -10,7 +10,7 @@ class CustomerController extends RestController
     {
         return [
             'class' => 'yii\filters\auth\HttpBearerAuth',
-            'only' => ['index', /*'view', 'create',*/ 'update', 'delete'],
+            'only' => ['index', 'view', /*'create',*/ 'update', 'delete'],
         ];
     }
 

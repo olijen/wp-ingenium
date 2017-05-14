@@ -1,19 +1,155 @@
-<!-- main app container -->
-<div class="jumbotron">
-    <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
-            <alert></alert>
-            <router-outlet></router-outlet>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Открыть</span><span class="icon-bar"></span>
+            <span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">team.WP-INGENIUM</a>
         </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="#">Проекты <span class="badge">3</span></a>
+            </li>
+            <li>
+              <a href="#">Сообщения <span class="badge">1</span></a>
+            </li>
+            <li class="dropdown">
+
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Уведомления <span class="badge">2</span><strong class="caret"></strong>
+              </a>
+
+              <ul class="dropdown-menu">
+
+                <li class="divider"></li><li>
+                  <a href="#">
+                    Инженер <strong>Олег</strong> оценил задачу <strong>Оптимизировать сайт</strong> (проект <strong>project.com</strong>)
+                  </a>
+                </li><li class="divider"></li>
+
+                <li class="divider"></li><li>
+                  <a href="#">
+                    Инженер <strong>Кирилл</strong> написал предложение к проекту <strong>project.com</strong>
+                  </a>
+                </li><li class="divider"></li>
+
+              </ul>
+            </li>
+          </ul>
+
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" size="45" placeholder="Искать в базе знаний или отправить в техподдержку"/>
+            </div>
+            <button type="submit" class="btn btn-default">Готово</button>
+          </form>
+
+          <span style="position:absolute;right:5px;" class="profile">
+            <img src="assets/img/default-user.png" style="width: 40px; height: 40px; border-radius: 20px;" />
+            <a href="#">Иван (gunda)</a>
+            <button type="button" class="btn btn-sm btn-xs" href="#">Выход</button>
+          </span>
+        </div>
+      </nav>
+
+      <ul class="breadcrumb">
+        <li>
+          <a href="/">Панель виджетов</a>
+        </li>
+        <li>
+          <a href="/">Виджеты</a>
+        </li>
+      </ul>
+
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4>Бот</h4>
+        <strong>Добро пожаловать!</strong> Вы успешно зарегистрированы. Загляните в нашу
+        <a href="#" class="alert-link">базу знаний</a> или задайте вопрос в <a href="#" class="alert-link">тех-поддержке</a>
+      </div>
+
+      <div class="page-header">
+        <h1>Панель виджетов <small>основные управляющие элементы интерфейса</small></h1>
+      </div>
+
+      <!--<alert></alert>
+      <router-outlet></router-outlet>-->
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img alt="Bootstrap Thumbnail First" src="assets/img/project-600-200.jpg"/>
+            <div class="caption">
+              <h3>
+                Виджет проектов
+              </h3>
+              <p>
+                <button class="btn" href="#">Все проекты</button>
+                <a class="btn" href="#">База знаний</a>
+              </p>
+              <p>
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+                metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img alt="Bootstrap Thumbnail Second" src="assets/img/checklist-600-200.jpg"/>
+            <div class="caption">
+              <h3>
+                Виджет задач
+              </h3>
+              <p>
+                <button class="btn" href="#">Все задачи</button>
+                <a class="btn" href="#">База знаний</a>
+              </p>
+              <p>
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+                metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img alt="Bootstrap Thumbnail Third" src="assets/img/statistic-600-200.jpg"/>
+            <div class="caption">
+              <h3>
+                Виджет статистики
+              </h3>
+              <p>
+                <button class="btn" href="#">Детально</button>
+                <a class="btn" href="#">База знаний</a>
+              </p>
+              <p>
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+                metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- credits -->
 <footer class="footer text-center">
-    <p>
-        <a href="http://wp-ingenium.com" target="_top">WP-INGENIUM.COM</a>
-    </p>
-    <p>
-        Ваши проекты в надёжных руках
-    </p>
+  <p>
+    <a href="http://wp-ingenium.com" target="_top">WP-INGENIUM.COM</a>
+  </p>
+  <p>
+    Ваши проекты в надёжных руках
+  </p>
 </footer>

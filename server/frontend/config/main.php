@@ -45,7 +45,7 @@ $config = [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    'levels' => ['error', 'warning', 'info'],
                 ], [
                     'class' => 'yii\log\FileTarget',
                     'logFile' => '@app/runtime/logs/eauth.log',

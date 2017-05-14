@@ -11,6 +11,6 @@ class Create extends RestAction
 {
     public function run()
     {
-        self::getCustomerService()->register(Yii::$app->request->post());
+        return self::getCustomerService()->register(Yii::$app->request->post());
     }
 }

@@ -2,9 +2,9 @@
 
 namespace frontend\application;
 
-use common\domain\issue\IssueRepository;
+use common\domain\issue\IIssueRepository;
+use common\domain\project\IProjectRepository;
 use common\domain\issue\IssueFactory;
-use common\domain\project\ProjectRepository;
 use common\components\ObjectConverter;
 
 use Yii;
@@ -12,16 +12,16 @@ use Yii;
 class IssueService implements IIssueService
 {
     /**
-     * @var IssueRepository
+     * @var IIssueRepository
      */
     private $issueRepository;
 
     /**
-     * @var ProjectRepository
+     * @var IProjectRepository
      */
     private $projectRepository;
 
-    public function __construct(IssueRepository $ir, ProjectRepository $pr)
+    public function __construct(IIssueRepository $ir, IProjectRepository $pr)
     {
         $this->issueRepository = $ir;
         $this->projectRepository = $pr;
@@ -48,7 +48,7 @@ class IssueService implements IIssueService
     {
         $issue = $this->issueRepository->fetchByIdForCustomer($issueId);
         ObjectConverter::loadDataToObject($issueData, $issue);
-        return $this->projectRepository->save($issue);
+        return $this->issueRepository->save($issue);
     }
 
     public function deleteById($issueId)
@@ -56,5 +56,24 @@ class IssueService implements IIssueService
         if ($this->issueRepository->detectByIdForCustomer($issueId)) {
             $this->issueRepository->removeById($issueId);
         }
+    }
+
+    /**
+     * Переводет issue в состояние "в работе". Используется, когда инженер провёл оценку задачи
+     * @param $issueId
+     * @return bool
+     */
+    public function confirmEstimate($issueId)
+    {
+        $issue = $this->issueRepository->fetchByIdForCustomer($issueId);
+        $issue->stage->makeInWork();
+        return $this->issueRepository->save($issue);
+    }
+
+    public function denyEstimate($issueId)
+    {
+        $issue = $this->issueRepository->fetchByIdForCustomer($issueId);
+        $issue->stage->makeInConversation();
+        return $this->issueRepository->save($issue);
     }
 }

@@ -33,6 +33,23 @@ export class AlertService {
         this.subject.next({ type: 'error', text: message });
     }
 
+    /**
+     * example error:
+     [
+       {field: "email", message: "Email is not a valid email address."},
+     …]
+     * @param errors
+     * @param keepAfterNavigationChange
+     */
+    serverValidationErrors(errors: any, keepAfterNavigationChange = false) {
+        var message = 'Ошибок: ' + errors.length + '. ';
+        for (var i = 0; i < errors.length; i++) {
+            message += errors[i].message + '\n';
+        }
+        this.keepAfterNavigationChange = keepAfterNavigationChange;
+        this.subject.next({ type: 'error', text: message });
+    }
+
     getMessage(): Observable<any> {
         return this.subject.asObservable();
     }
