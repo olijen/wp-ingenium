@@ -1,13 +1,43 @@
 <div>
-    <h3>Ваши проекты:</h3>
-    <a class="btn btn-outline-primary" [routerLink]="['/projects/form']">Новый проект</a>
-    <ul>
-        <li *ngFor="let project of projects">
-            <div>
-                <a class="btn btn-block btn-outline-primary" [routerLink]="['/projects', project.id]">{{project.name}}</a>
-                <span *ngIf="project.url">( {{project.url}} )</span>
-            </div>
-            <!-- 3 last issue -->
-        </li>
-    </ul>
+  <div class="col-md-12">
+    <div class="btn-group btn-group-lg">
+      <button
+          [routerLink]="'/projects/form'"
+          class="btn btn-default" type="button"
+      ><em class="glyphicon glyphicon-task"></em> Новый проект</button>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Название</th>
+      <th>Создан</th>
+      <th>Изменён</th>
+      <th>Статус</th>
+      <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let project of projects">
+      <td>{{project.id}}</td>
+      <td>
+        {{project.name}}
+        <a *ngIf="project.url" class="btn btn-xs" href="{{project.url}}">
+          {{project.url}}
+        </a>
+      </td>
+      <td>12.12.2012</td>
+      <td>12.12.2012</td>
+      <td>Новый</td>
+      <td>
+        <button
+            class="btn btn-block btn-outline-primary"
+            [routerLink]="['/projects', project.id]"
+        >Смотреть</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>

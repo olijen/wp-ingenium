@@ -5,6 +5,7 @@ import { Project } from '../_models/index';
 
 @Injectable()
 export class ProjectService {
+    
     constructor(private http: Http) { }
 
     getAll() {

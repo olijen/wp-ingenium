@@ -1,0 +1,21 @@
+@startuml
+
+interface Human {
+    +name
+}
+interface Customer {
+
+}
+interface Engineer
+interface Project
+interface Issue
+interface Task
+
+interface Event
+
+interface File
+interface Message
+
+
+
+@enduml

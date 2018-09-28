@@ -2,10 +2,6 @@
 
 namespace frontend\components;
 
-use frontend\application\CustomerService;
-use frontend\application\IssueService;
-use frontend\application\MasterService;
-use frontend\application\ProjectService;
 use yii\rest\Controller;
 
 class RestController extends Controller

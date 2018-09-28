@@ -4,7 +4,7 @@ namespace common\domain\human;
 
 use common\domain\issue\Issue;
 
-class Master extends Human
+class Engineer extends Human
 {
     //properties
 
@@ -25,11 +25,11 @@ class Master extends Human
 
     public function makeReady()
     {
-        
+        $this->ready = true;
     }
 
     public function makeBusy()
     {
-        
+        $this->ready = false;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace common\components;
 
-class DomainModel
+abstract class DomainModel
 {
 
 }

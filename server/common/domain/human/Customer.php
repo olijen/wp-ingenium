@@ -4,6 +4,9 @@ namespace common\domain\human;
 
 use common\domain\project\Project;
 
+var_dump('qwwerty');
+exit();
+
 class Customer extends Human
 {
     //properties

@@ -23,9 +23,10 @@ class CustomerService implements ICustomerService
     {
         $this->customerRepository = $cr;
     }
-
+    
     public function getById($id)
     {
+        exit;
         return $this->customerRepository->fetchById($id);
     }
 

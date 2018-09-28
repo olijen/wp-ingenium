@@ -5,7 +5,7 @@ namespace common\components;
 use Exception;
 
 /**
- * Class ObjectConverter Преобразует данные в ,бизнес объекты
+ * Class ObjectConverter Преобразует данные в бизнес объекты
  * @package common\components
  */
 class ObjectConverter

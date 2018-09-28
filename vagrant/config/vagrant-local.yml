@@ -13,8 +13,8 @@ box_check_update: false
 machine_name: wpi
 
 # IP
-# ip: 192.168.0.223
-ip: 192.168.12.245
+ip: 192.168.0.223
+# ip: 192.168.12.245
 static_ip: 192.168.0.142
 
 # Virtual machine CPU cores number

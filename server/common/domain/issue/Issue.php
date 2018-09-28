@@ -3,7 +3,7 @@
 namespace common\domain\issue;
 
 use common\components\DomainModel;
-use common\domain\human\Master;
+use common\domain\human\Engineer;
 use common\domain\project\Project;
 use common\domain\values\File;
 use common\domain\values\Message;
@@ -30,7 +30,7 @@ class Issue extends DomainModel
      */
     public $project_id;
     /**
-     * @var Master
+     * @var Engineer
      */
     public $master;
 

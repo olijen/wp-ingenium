@@ -2,10 +2,10 @@
 
 namespace frontend\application;
 
-use common\domain\issue\IIssueRepository;
 use common\domain\project\IProjectRepository;
-use common\domain\issue\IssueFactory;
+use common\domain\issue\IIssueRepository;
 use common\components\ObjectConverter;
+use common\domain\issue\IssueFactory;
 
 use Yii;
 

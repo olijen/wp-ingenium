@@ -1,13 +1,50 @@
-<div class="col-md-6 col-md-offset-3">
-    <h4>Добро пожаловать, <b>{{customer.name}}!</b></h4>
-    <h6>Давайте немного поработаем</h6>
+<div class="col-md-4">
+    <div class="thumbnail">
+        <img alt="Bootstrap Thumbnail First" src="assets/img/project-600-200.jpg"/>
+        <div class="caption">
+            <h3>Последние проекты</h3>
+            <p>
+                <button [routerLink]="['/projects']" class="btn">Все проекты</button>
+                <a class="btn" href="#">База знаний</a>
+            </p>
+            <p>
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+                metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+            </p>
+        </div>
+    </div>
+</div>
 
-    <p><a class="btn btn-block btn-outline-primary" [routerLink]="['/notify']">Ваши уведомления <span class="badge">5</span></a></p>
-    <p><a class="btn btn-block btn-outline-primary" [routerLink]="['/projects']">Ваши проекты <span class="badge">5</span></a></p>
-    <p><a class="btn btn-block btn-outline-primary" [routerLink]="['/issues']">Ваши задачи <span class="badge">5</span></a></p>
+<div class="col-md-4">
+    <div class="thumbnail">
+        <img alt="Bootstrap Thumbnail Second" src="assets/img/checklist-600-200.jpg"/>
+        <div class="caption">
+            <h3>Последние задачи</h3>
+            <p>
+                <button [routerLink]="['/issues']" class="btn">Все задачи</button>
+                <a class="btn" href="#">База знаний</a>
+            </p>
+            <p>
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+                metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+            </p>
+        </div>
+    </div>
+</div>
 
-    <p>
-        <a class="btn btn-outline-success"[routerLink]="['/contact']">Связаться с тех поддержкой</a>
-        <a class="btn btn-outline-danger" [routerLink]="['/login']">Выйти</a>
-    </p>
+<div class="col-md-4">
+    <div class="thumbnail">
+        <img alt="Bootstrap Thumbnail Third" src="assets/img/statistic-600-200.jpg"/>
+        <div class="caption">
+            <h3>Статистика</h3>
+            <p>
+                <button [routerLink]="['/statistic']" class="btn">Детально</button>
+                <a class="btn" href="#">База знаний</a>
+            </p>
+            <p>
+                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget
+                metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+            </p>
+        </div>
+    </div>
 </div>

@@ -4,8 +4,8 @@ namespace common\components;
 
 use Yii;
 use Exception;
-use yii\base\Component;
 use yii\db\Query;
+use yii\base\Component;
 
 /**
  * Class Repository - моделирует хранилище.

@@ -1,26 +1,33 @@
-<div *ngIf="project" class="col-md-6 col-md-offset-3">
-    <h3>Проект: {{project.name}}</h3>
-
-    <button class="btn btn-success" [routerLink]="'/projects/' + project.id + '/issues'">
-        Задачи проекта
-    </button>
-    <button class="btn btn-info" [routerLink]="'/projects/' + project.id + '/form'">
-        Изменить проект
-    </button>
-    <button class="btn btn-danger" (click)="delete()">
-        Удалить проект
-    </button>
-
-    <div class="project_block">
-        <ul>
-            <li>
-                <label>URL адрес:</label>
-                <a href="{{project.url}}">{{project.url}}</a>
-            </li>
-            <li>
-                <label>Описание</label>
-                <p>{{project.description}}</p>
-            </li>
-        </ul>
+<div *ngIf="project">
+  <div class="col-md-12">
+    <div class="btn-group btn-group-lg">
+      <button
+          [routerLink]="'/projects/' + project.id + '/issues'"
+          class="btn btn-default" type="button"
+      ><em class="glyphicon glyphicon-task"></em> Задачи проекта</button>
+      <button
+          [routerLink]="'/projects/' + project.id + '/form'"
+          class="btn btn-default" type="button"
+      ><em class="glyphicon glyphicon-pensil"></em> Изменить проект</button>
+      <button
+          (click)="delete()"
+          class="btn btn-default" type="button"
+      ><em class="glyphicon glyphicon-delete"></em> Удалить проект</button>
     </div>
+  </div>
+
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>URL адрес</td>
+          <td><a href="{{project.url}}">{{project.url}}</a></td>
+        </tr>
+        <tr>
+          <td>Описание</td>
+          <td>{{project.description}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

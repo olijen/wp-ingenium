@@ -13,8 +13,8 @@ class FreelancehuntController extends Controller
 
     public function actionGetThreads()
     {
-        $api_token = 'sokokirivok'; // ваш идентификатор
-        $api_secret = 'dd68dd49e398008be491c684584c0b135049372f'; // ваш секретный ключ
+        return (new ThreadRepository())->fetchAll();
+
 
         function sign($api_secret, $url, $method, $post_params = '') {
             return base64_encode(hash_hmac("sha256", $url.$method.$post_params, $api_secret, true));
